@@ -17,6 +17,8 @@ const mg = mailgun({
 // ✅ Route to send mail
 app.post("/api/send-mail", (req, res) => {
   const { name, email, service, message } = req.body;
+  
+  console.log("From email:", process.env.FROM_EMAIL); // 
 
   const data = {
     from: process.env.FROM_EMAIL,
