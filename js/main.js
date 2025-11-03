@@ -179,11 +179,12 @@ document.getElementById("contact-form").addEventListener("submit", async (e) => 
   button.textContent = "Sending...";
 
   try {
-    const response = await fetch("http://localhost:5000/api/send-mail", {
+    const response = await fetch("https://dwyngs-website.onrender.com/api/send-mail", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ name, email, service, message }),
     });
+
 
     const result = await response.json();
 
