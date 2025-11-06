@@ -151,36 +151,70 @@ $$('[data-popup]').forEach(btn => {
       `;
     }
 
-    // Existing project/service info
-    if (id === 'proj1') html = '<h3>Festival Poster</h3><p>Large-format poster production, layered source files & print-ready PDFs.</p>';
-    if (id === 'proj2') html = '<h3>Restaurant Menu</h3><p>Elegant menu with print and social-ready versions.</p>';
-    if (id === 'proj3') html = '<h3>Corporate Banner</h3><p>High-impact banner for events and signage.</p>';
-    if (id.startsWith('service')) html = `<h3>Service</h3><p>Details for ${id}.</p>`;
-    if (id === 'work') html = `
-  <h3>Our Portfolio</h3>
-  <p>We don't just design, we make our clint happy. Here’s a quick preview of our recent work.</p>
-  <div class="mini-gallery">
-    <img src="assets/work1.jpg" alt="Poster Design">
-    <img src="assets/work2.jpg" alt="Banner Design">
-    <img src="assets/work3.jpg" alt="Logo Design">
-  </div>
-`;
+    // 🎨 Portfolio Details (new full info for Portfolio 2.0)
+    if (id === 'proj1') html = `
+      <h3>Festival Poster</h3>
+      <img src="assets/work1.jpg" alt="Festival Poster" style="width:100%;border-radius:8px;margin:8px 0;">
+      <p>Large-format festival poster with layered source files and print-ready PDFs.</p>
+      <p><strong>Tools:</strong> Adobe Photoshop</p>
+      <p><strong>Client:</strong> Cultural Event Agency</p>
+    `;
 
+    if (id === 'proj2') html = `
+      <h3>Restaurant Menu</h3>
+      <img src="assets/work2.jpg" alt="Restaurant Menu" style="width:100%;border-radius:8px;margin:8px 0;">
+      <p>Elegant multi-page menu designed for both print and digital sharing.</p>
+      <p><strong>Tools:</strong> InDesign, Photoshop</p>
+      <p><strong>Client:</strong> Urban Eats Bistro</p>
+    `;
+
+    if (id === 'proj3') html = `
+      <h3>Corporate Banner</h3>
+      <img src="assets/work3.jpg" alt="Corporate Banner" style="width:100%;border-radius:8px;margin:8px 0;">
+      <p>High-impact event banner optimized for large-format printing.</p>
+      <p><strong>Tools:</strong> Illustrator</p>
+      <p><strong>Client:</strong> Tech Expo 2025</p>
+    `;
+
+    if (id === 'proj4') html = `
+      <h3>Brand Identity</h3>
+      <img src="assets/work4.jpg" alt="Brand Identity" style="width:100%;border-radius:8px;margin:8px 0;">
+      <p>Complete brand identity with logo, color palette, and typography system.</p>
+      <p><strong>Tools:</strong> Illustrator, Figma</p>
+      <p><strong>Client:</strong> D'WYNGS Creative Studio</p>
+    `;
+
+    if (id === 'proj5') html = `
+      <h3>Social Campaign</h3>
+      <img src="assets/work5.jpg" alt="Social Campaign" style="width:100%;border-radius:8px;margin:8px 0;">
+      <p>Dynamic social media templates and animations for a new campaign launch.</p>
+      <p><strong>Tools:</strong> Photoshop, After Effects</p>
+      <p><strong>Client:</strong> StartUp Hub</p>
+    `;
+
+    if (id === 'proj6') html = `
+      <h3>Flyer Design</h3>
+      <img src="assets/work6.jpg" alt="Flyer Design" style="width:100%;border-radius:8px;margin:8px 0;">
+      <p>Print-ready flyer design featuring modern layout and quick delivery.</p>
+      <p><strong>Tools:</strong> Illustrator</p>
+      <p><strong>Client:</strong> Local Business Network</p>
+    `;
+
+    // 🖼️ Existing “work” popup
+    if (id === 'work') html = `
+      <h3>Our Portfolio</h3>
+      <p>We don't just design, we make our clients happy. Here’s a quick preview of our recent work.</p>
+      <div class="mini-gallery">
+        <img src="assets/work1.jpg" alt="Poster Design">
+        <img src="assets/work2.jpg" alt="Banner Design">
+        <img src="assets/work3.jpg" alt="Logo Design">
+      </div>
+    `;
+
+    // ✅ finally call openModal() AFTER html is defined
     openModal(html);
   });
 });
-
-
-/* Testimonial auto-switch */
-(function testSlider(){
-  const box = document.getElementById('testimonials-slider');
-  if(!box) return;
-  const items = Array.from(box.children);
-  let t = 0;
-  function show(i){ items.forEach((it,idx)=> it.classList.toggle('active', idx===i)); }
-  show(0);
-  setInterval(()=> { t = (t+1) % items.length; show(t); }, 4500);
-})();
 
 /* Counters */
 (function counters(){
@@ -255,6 +289,76 @@ document.getElementById("contact-form").addEventListener("submit", async (e) => 
 
 /* Footer year */
 const yearEl = document.getElementById('year'); if(yearEl) yearEl.textContent = new Date().getFullYear();
+
+/* Portfolio 2.0 carousel (3-per-view, center hero) */
+(function initPortfolio2(){
+  const root = document.getElementById('portfolio-2-carousel');
+  if(!root) return;
+  const track = root.querySelector('.p2-track');
+  const cards = Array.from(track.children);
+  const total = cards.length;
+  let idx = 0; // index of centered card (0..total-1)
+
+  // show current: compute translateX so center card is visually centered
+  function render(){
+    // center card should be idx, we want to place it as the 2nd card in view (0-based)
+    // we'll arrange cards in order and translate so the centered card is visually centered
+    const cardWidth = cards[0].getBoundingClientRect().width + 20; // include gap
+    // We want to translate so that the (idx - 1) card appears on left, idx center, idx+1 right
+    // compute offset such that idx card sits in center of container
+    const containerWidth = root.getBoundingClientRect().width;
+    const centerOffset = (containerWidth - cardWidth) / 2;
+    const trackOffset = -((idx) * cardWidth) + centerOffset;
+    track.style.transform = `translateX(${trackOffset}px)`;
+
+    // clear center class
+    cards.forEach(c => c.classList.remove('center'));
+    // add center to idx
+    if(cards[idx]) cards[idx].classList.add('center');
+  }
+
+  // wrap index
+  function goto(i){
+    idx = ((i % total) + total) % total;
+    render();
+  }
+
+  // next / prev
+  const nextBtn = document.querySelector('.p2-next');
+  const prevBtn = document.querySelector('.p2-prev');
+  nextBtn && nextBtn.addEventListener('click', ()=> goto(idx+1));
+  prevBtn && prevBtn.addEventListener('click', ()=> goto(idx-1));
+
+  // autoplay
+  const auto = parseInt(root.dataset.autoplay) || 4000;
+  let timer = null;
+  if(auto){
+    timer = setInterval(()=> goto(idx+1), auto);
+    root.addEventListener('mouseenter', ()=> clearInterval(timer));
+    root.addEventListener('mouseleave', ()=> timer = setInterval(()=> goto(idx+1), auto));
+  }
+
+  // touch / swipe support (basic)
+  let startX = 0, deltaX = 0;
+  root.addEventListener('touchstart', (e) => { startX = e.touches[0].clientX; if(timer) clearInterval(timer); });
+  root.addEventListener('touchmove', (e) => { deltaX = e.touches[0].clientX - startX; });
+  root.addEventListener('touchend', () => {
+    if(Math.abs(deltaX) > 40){ if(deltaX < 0) goto(idx+1); else goto(idx-1); }
+    deltaX = 0;
+    if(auto) timer = setInterval(()=> goto(idx+1), auto);
+  });
+
+  // initial
+  window.addEventListener('load', ()=> {
+    // small delay to ensure sizes measured
+    setTimeout(()=> { render(); }, 150);
+    // update on resize
+    window.addEventListener('resize', ()=> { render(); });
+  });
+
+  // expose goto for debugging
+  window._p2_goto = goto;
+})();
 
 /* Close modal with Esc key */
 document.addEventListener('keydown', (e) => {
