@@ -113,14 +113,55 @@ $$('[data-popup]').forEach(btn => {
   btn.addEventListener('click', (e) => {
     const id = btn.dataset.popup;
     let html = '<h3>Details</h3><p>Information coming soon.</p>';
-    if(id === 'proj1') html = '<h3>Festival Poster</h3><p>Large-format poster production, layered source files & print-ready PDFs.</p>';
-    if(id === 'proj2') html = '<h3>Restaurant Menu</h3><p>Elegant menu with print and social-ready versions.</p>';
-    if(id === 'proj3') html = '<h3>Corporate Banner</h3><p>High-impact banner for events and signage.</p>';
-    if(id.startsWith('service')) html = `<h3>Service</h3><p>Details for ${id}.</p>`;
-    if(id === 'work') html = '<h3>Portfolio</h3><p>Browse the portfolio carousel on the page.</p>';
+
+    // ✅ Pricing Details
+    if (id === 'order-starter') {
+      html = `
+        <h3>Starter Plan</h3>
+        <ul>
+          <li>🎨 1 custom poster design</li>
+          <li>✏️ 2 revisions included</li>
+          <li>⚡ Fast delivery (2–3 days)</li>
+          <li>💼 Perfect for small businesses or single campaigns.</li>
+        </ul>
+      `;
+    }
+
+    if (id === 'order-pro') {
+      html = `
+        <h3>Pro Plan</h3>
+        <ul>
+          <li>🖋️ 3 unique designs + branding polish</li>
+          <li>♾️ Unlimited revisions</li>
+          <li>💬 Dedicated design consultant</li>
+          <li>🚀 Ideal for growing brands and social campaigns.</li>
+        </ul>
+      `;
+    }
+
+    if (id === 'contact-sales') {
+      html = `
+        <h3>Enterprise Plan</h3>
+        <ul>
+          <li>🏢 Custom pricing based on your needs</li>
+          <li>👥 Team onboarding and design training</li>
+          <li>🎯 Full branding package (logo, colors, typography)</li>
+          <li>📞 Contact our sales team for a tailored plan.</li>
+        </ul>
+      `;
+    }
+
+    // Existing project/service info
+    if (id === 'proj1') html = '<h3>Festival Poster</h3><p>Large-format poster production, layered source files & print-ready PDFs.</p>';
+    if (id === 'proj2') html = '<h3>Restaurant Menu</h3><p>Elegant menu with print and social-ready versions.</p>';
+    if (id === 'proj3') html = '<h3>Corporate Banner</h3><p>High-impact banner for events and signage.</p>';
+    if (id.startsWith('service')) html = `<h3>Service</h3><p>Details for ${id}.</p>`;
+    if (id === 'work') html = '<h3>Portfolio</h3><p>Browse the portfolio carousel on the page.</p>';
+
     openModal(html);
   });
 });
+
 
 /* Testimonial auto-switch */
 (function testSlider(){
