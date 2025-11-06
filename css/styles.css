@@ -176,3 +176,24 @@ body{
     max-width: 100%;
   }
 }
+/* Mini gallery inside modal */
+.mini-gallery {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.mini-gallery img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin: 6px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.mini-gallery img:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}

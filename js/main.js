@@ -156,7 +156,15 @@ $$('[data-popup]').forEach(btn => {
     if (id === 'proj2') html = '<h3>Restaurant Menu</h3><p>Elegant menu with print and social-ready versions.</p>';
     if (id === 'proj3') html = '<h3>Corporate Banner</h3><p>High-impact banner for events and signage.</p>';
     if (id.startsWith('service')) html = `<h3>Service</h3><p>Details for ${id}.</p>`;
-    if (id === 'work') html = '<h3>Portfolio</h3><p>Browse the portfolio carousel on the page.</p>';
+    if (id === 'work') html = `
+  <h3>Our Portfolio</h3>
+  <p>We don't just design, we make our clint happy. Here’s a quick preview of our recent work.</p>
+  <div class="mini-gallery">
+    <img src="assets/work1.jpg" alt="Poster Design">
+    <img src="assets/work2.jpg" alt="Banner Design">
+    <img src="assets/work3.jpg" alt="Logo Design">
+  </div>
+`;
 
     openModal(html);
   });
