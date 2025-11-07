@@ -19,11 +19,21 @@
 /* BASE */
 *{box-sizing:border-box}
 html,body{height:100%}
-body{
-  margin:0;background: linear-gradient(180deg,var(--navy) 0%, #05101a 100%);color:var(--white);
-  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
-  line-height:1.5;font-size:16px;
+/* === Global Background === */
+body {
+  background-color: #07102a; /* your deep blue tone */
+  color: #fff;
+  overflow-x: hidden;
+  position: relative;
 }
+
+/* Remove any section background overrides */
+section, .section, .site-section {
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
 .container{max-width:var(--max-width);margin:0 auto;padding:0 var(--pad)}
 
 /* HEADER */
@@ -139,13 +149,33 @@ body{
 .brand-logo-small{width:36px;height:36px;border-radius:8px}
 .reach{margin-top:8px}
 .socials-inline a{margin-right:12px;color:var(--gold);text-decoration:none}
+/* Contact Section Links */
+.contact-info a {
+  color: var(--gold);
+  text-decoration: none;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
 
+.contact-info a:hover {
+  color: #ffe57f; /* lighter gold */
+  text-shadow: 0 0 6px rgba(255, 213, 74, 0.4);
+}
 /* MODAL */
 .modal{position:fixed;inset:0;display:none;justify-content:center;align-items:center;background:rgba(1,4,8,0.6);z-index:300}
 .modal.show{display:flex}
 .modal-panel{background:linear-gradient(180deg,#071428,#071728);padding:20px;border-radius:12px;max-width:720px;width:94%;border:1px solid rgba(255,255,255,0.03)}
 .modal-close{position:absolute;right:18px;top:18px;background:none;border:0;color:var(--muted);font-size:18px}
+/* Footer Contact Links */
+.reach a {
+  color: var(--gold);
+  text-decoration: none;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
 
+.reach a:hover {
+  color: #ffe57f; /* lighter gold */
+  text-shadow: 0 0 6px rgba(255, 213, 74, 0.4);
+}
 /* REVEALS */
 .reveal{opacity:0;transform:translateY(24px);transition:all .7s cubic-bezier(.2,.9,.25,1)}
 .reveal.in-view{opacity:1;transform:none}

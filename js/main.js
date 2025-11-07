@@ -213,42 +213,42 @@ $$('[data-popup]').forEach(btn => {
     // Service modal details
 if (id === 'service-flyers') html = `
   <h3>Flyers</h3>
-  <div class="modal-hero" style="background-image:url('assets/service1.jpg')"></div>
+  <img src="assets/service1.jpg" alt="Flyer Design" style="width:100%;border-radius:8px;margin:8px 0;">
   <p>Creative flyer designs that capture attention—print-ready, digital-ready with fast turnaround.</p>
   <p><strong>Tools:</strong> Illustrator, Photoshop</p>
 `;
 
 if (id === 'service-posters') html = `
   <h3>Posters</h3>
-  <div class="modal-hero" style="background-image:url('assets/service2.jpg')"></div>
+  <img src="assets/service2.jpg" alt="Flyer Design" style="width:100%;border-radius:8px;margin:8px 0;">
   <p>Bold poster layouts for events, campaigns & promotions with print & web variations.</p>
   <p><strong>Tools:</strong> Illustrator, InDesign</p>
 `;
 
 if (id === 'service-cards') html = `
   <h3>Visiting Cards</h3>
-  <div class="modal-hero" style="background-image:url('assets/service3.jpg')"></div>
+  <img src="assets/service3.jpg" alt="Flyer Design" style="width:100%;border-radius:8px;margin:8px 0;">
   <p>Professional visiting cards with premium print specs and source files included.</p>
   <p><strong>Tools:</strong> Illustrator</p>
 `;
 
 if (id === 'service-billboards') html = `
   <h3>Billboards</h3>
-  <div class="modal-hero" style="background-image:url('assets/service4.jpg')"></div>
+   <img src="assets/service4.jpg" alt="Flyer Design" style="width:100%;border-radius:8px;margin:8px 0;">
   <p>High-impact billboard visuals optimized for large format production.</p>
   <p><strong>Tools:</strong> Illustrator</p>
 `;
 
 if (id === 'service-printing') html = `
   <h3>Printing Visuals</h3>
-  <div class="modal-hero" style="background-image:url('assets/service5.jpg')"></div>
+   <img src="assets/service5.jpg" alt="Flyer Design" style="width:100%;border-radius:8px;margin:8px 0;">
   <p>Print-ready visuals with color-corrected files and trim marks—perfect for pro printing.</p>
   <p><strong>Tools:</strong> Photoshop, InDesign</p>
 `;
 
 if (id === 'service-custom') html = `
   <h3>Custom Designs</h3>
-  <div class="modal-hero" style="background-image:url('assets/service6.jpg')"></div>
+   <img src="assets/service6.jpg" alt="Flyer Design" style="width:100%;border-radius:8px;margin:8px 0;">
   <p>Tailored designs created to match your brand voice—logos, assets and full brand kits.</p>
   <p><strong>Tools:</strong> Figma, Illustrator</p>
 `;
