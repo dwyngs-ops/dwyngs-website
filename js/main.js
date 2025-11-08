@@ -310,7 +310,6 @@ document.getElementById("contact-form").addEventListener("submit", async (e) => 
       body: JSON.stringify({ name, email, service, message }),
     });
 
-
     const result = await response.json();
 
     if (result.success) {
@@ -327,6 +326,47 @@ document.getElementById("contact-form").addEventListener("submit", async (e) => 
   // Re-enable button
   button.disabled = false;
   button.textContent = "Send Message";
+});
+// Handle contact form submission
+document.getElementById("contact-form").addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const name = document.getElementById("name").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const service = document.getElementById("service").value;
+  const message = document.getElementById("message").value.trim();
+
+  const button = e.target.querySelector("button[type='submit']");
+  button.disabled = true;
+  button.textContent = "Sending...";
+
+  try {
+    const response = await fetch("https://dwyngs-website.onrender.com/api/send-mail", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name, email, service, message }),
+    });
+
+    const result = await response.json();
+
+    if (result.success) {
+      alert("✅ Your message has been sent successfully!");
+      e.target.reset();
+    } else {
+      alert("❌ Message failed to send. Please try again later.");
+    }
+  } catch (error) {
+    console.error("Error:", error);
+    alert("⚠️ Could not connect to the server. Check if backend is running.");
+  }
+
+  button.disabled = false;
+  button.textContent = "Send Message";
+});
+
+// Handle Clear button
+document.getElementById("clear-form").addEventListener("click", () => {
+  document.getElementById("contact-form").reset();
 });
 
 /* Footer year */
