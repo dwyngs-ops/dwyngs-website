@@ -558,3 +558,31 @@ footer {
         display: flex;
     }
 }
+/* Logo Combined Styling */
+.logo-combined {
+    display: flex; /* Makes the image and text sit side-by-side */
+    align-items: center; /* Vertically aligns them in the middle */
+    gap: 10px; /* Adds a small space between the image and text */
+    font-family: var(--font-heading); /* Keeps the text styling */
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.brand-logo {
+    height: 35px; /* Adjust this height to fit your logo well */
+    width: auto;
+    /* Optional: if your logo is dark, you might want to invert its color for the dark background */
+    /* filter: invert(100%); */
+}
+
+/* Adjust font size for combined logo on smaller screens if needed */
+@media (max-width: 900px) {
+    .logo-combined {
+        font-size: 1.5rem; /* Slightly smaller text for mobile */
+        gap: 8px;
+    }
+    .brand-logo {
+        height: 30px; /* Slightly smaller logo for mobile */
+    }
+}
