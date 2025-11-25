@@ -1,448 +1,452 @@
-/* main.js — interactions for D'WYNGS */
-/* - dropdowns, mobile toggle
-   - smooth anchors
-   - reveal on scroll
-   - carousel autoplay + controls
-   - modal popups for highlights
-   - counters for achievements
-   - contact form placeholder behavior
-*/
+/**
+ * D'wyngs Main Script
+ * Features: Three.js Ad Composition, Swiper, AOS, Portfolio Scroll Fix, Legal Popups.
+ * Folder Structure Compatibility: Assumes 'js/main.js' and 'css/styles.css'
+ * IMPORTANT: Form submission logic targets the existing Render API endpoint.
+ */
 
-/* Helpers */
-const $ = (s, ctx=document) => ctx.querySelector(s);
-const $$ = (s, ctx=document) => Array.from(ctx.querySelectorAll(s));
+// --- 1. Ad-Specific Dummy Data & Legal Content ---
 
-/* Dropdowns (desktop) */
-$$('.has-dropdown').forEach(li => {
-  const btn = li.querySelector('.drop-btn');
-  const dd = li.querySelector('.dropdown');
-  if(!btn || !dd) return;
-  btn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    const open = btn.getAttribute('aria-expanded') === 'true';
-    btn.setAttribute('aria-expanded', String(!open));
-    dd.classList.toggle('show', !open);
-  });
-});
-// Close dropdowns on outside click
-document.addEventListener('click', (e) => {
-  $$('.dropdown').forEach(dd => dd.classList.remove('show'));
-  $$('.drop-btn').forEach(b => b.setAttribute('aria-expanded','false'));
-});
+const portfolioData = [
+    { title: "Nike Air Max Launch", category: "Social Ads", img: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=600&q=80", desc: "High-energy Instagram Stories designed to drive sneaker drops. Achieved 4.5% CTR." },
+    { title: "CryptoApp Install", category: "PPC Banners", img: "https://images.unsplash.com/photo-1518546305927-5a555bb7020d?auto=format&fit=crop&w=600&q=80", desc: "Google Display Network set. Focused on 'Trust' and 'Speed' hooks. +20% conversion lift." },
+    { title: "Glow Skin Black Friday", category: "Motion Ads", img: "https://images.unsplash.com/photo-1596462502278-27bfdd403348?auto=format&fit=crop&w=600&q=80", desc: "Stop-motion product showcase for TikTok ads. Viral engagement with 2M+ views." },
+    { title: "TechConf 2024", category: "OOH Billboard", img: "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=600&q=80", desc: "City-center digital billboard visuals. High contrast for maximum street visibility." },
+    { title: "SaaS Lead Gen", category: "LinkedIn Carousel", img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80", desc: "Educational carousel ads for B2B targeting. Positioned client as industry thought leader." }
+];
 
-/* Mobile toggle */
-const mobileToggle = $('#mobile-toggle');
-mobileToggle && mobileToggle.addEventListener('click', () => {
-  const nav = document.querySelector('.main-nav');
-  if(!nav) return;
-  if(nav.style.display === 'block'){ nav.style.display = ''; }
-  else { nav.style.display = 'block'; }
-});
+const reviewsData = [
+    { name: "Mike Ross", role: "CMO, E-Shopify", text: "We stopped using generic designers. D'wyngs understands performance marketing. Our ROAS doubled." },
+    { name: "Sarah Connor", role: "Growth Lead, Skynet", text: "Their motion ads for our app install campaign were killer. The cost-per-install dropped by 30%." },
+    { name: "James Bond", role: "Event Manager", text: "The billboard visuals were stunning and actually readable from a distance. Great print knowledge." }
+];
 
-/* Smooth anchor links */
-$$('a[href^="#"]').forEach(a => {
-  a.addEventListener('click', (e) => {
-    const href = a.getAttribute('href');
-    if(href.length > 1){
-      e.preventDefault();
-      const target = document.querySelector(href);
-      if(target) target.scrollIntoView({behavior:'smooth', block:'start'});
+const servicesDigital = [
+    { title: "Social Media Creatives", desc: "Scroll-stopping static & carousel ads for FB, IG, and LinkedIn." },
+    { title: "Motion & Video Ads", desc: "Short-form video editing and animation for TikTok & Reels." },
+    { title: "PPC Display Banners", desc: "Google & Programmatic banners optimized for clicks." }
+];
+
+const servicesPrint = [
+    { title: "Billboards & OOH", desc: "Large format digital and static outdoor advertising." },
+    { title: "Event Signage", desc: "Booths, roll-ups, and banners for conferences." },
+    { title: "Direct Mail Ads", desc: "Physical flyers and postcards designed for direct response." }
+];
+
+const teamData = [
+    { name: "Alex D.", role: "Creative Strategist", img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80" },
+    { name: "Jessica L.", role: "Motion Designer", img: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=400&q=80" },
+    { name: "David K.", role: "Conversion Specialist", img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80" }
+];
+
+const legalContent = {
+    privacy: {
+        title: "Privacy Policy",
+        text: `<h3>Introduction</h3><p>We take your privacy seriously. This policy explains how we collect, use, and protect your personal data when you use our services or website.</p>
+               <h3>Data Collection</h3><p>We collect information you provide directly to us (e.g., name, email) when you submit a contact form or place an order. We also automatically collect non-personal data like IP addresses and browsing behavior using cookies and analytics for site optimization and ad performance tracking.</p>
+               <h3>Data Use</h3><p>Your data is used solely to fulfill your requests, manage your campaign, process payments, and improve our services. We do not sell your personal data to third parties.</p>`
+    },
+    return: {
+        title: "Creative Return Policy",
+        text: `<h3>Scope of Return</h3><p>Due to the bespoke nature of advertisement visual design, our services are non-refundable once the final, approved assets have been delivered ("Final Delivery").</p>
+               <h3>Revision Process</h3><p>We offer a standard revision period (typically 3 rounds) outlined in your service agreement. Assets are only deemed 'returned' for revision during this phase.</p>
+               <h3>Rejection Before Final Delivery</h3><p>If the project is terminated by the client before Final Delivery, a prorated amount based on the work completed and costs incurred will be retained, and any remaining balance refunded. Contact us immediately to discuss project cancellation.</p>`
+    },
+    refund: {
+        title: "Refund Policy",
+        text: `<h3>General Refund Eligibility</h3><p>Refunds are only issued if D'wyngs fails to initiate work within 15 business days of receiving the initial deposit and project brief, or if explicitly outlined in a written service contract addendum.</p>
+               <h3>Non-Refundable Circumstances</h3><p>No refunds will be granted after the client approves the final design files or after the project moves beyond the agreed-upon revision rounds and reaches Final Delivery.</p>
+               <h3>Payment Gateway (RazorPay) Disclaimer</h3><p>All refunds processed will follow the standard operational timelines and terms of service provided by our payment gateway, RazorPay. We are not responsible for delays caused by the payment processor or the client's bank. Any charges incurred by us (e.g., transaction fees) may be deducted from the refund amount.</p>`
+    },
+    disclaimer: {
+        title: "Disclaimer (RazorPay Compliance)",
+        text: `<h3>Payment Gateway</h3><p>Our payment processing is powered by RazorPay. By submitting a payment, you agree to RazorPay's terms and conditions, which govern the transaction process.</p>
+               <h3>Transaction Security</h3><p>All sensitive information is handled by RazorPay's secure gateway. We do not store your credit card or sensitive payment details on our servers.</p>
+               <h3>RazorPay Rule Compliance</h3><p>As per RazorPay guidelines, this disclaimer confirms that D'wyngs operates legally, offers defined services (Ad Visuals Graphic Design), and adheres to all laws regarding the sale of digital creative services.</p>
+               <h3>Service Scope</h3><p>D'wyngs is only responsible for the creative design services described in your package. We do not guarantee ad performance, click rates, or sales success, as those factors are dependent on the client's marketing strategy and budget.</p>`
     }
-  });
-});
+};
 
-/* Reveal on scroll using IntersectionObserver */
-const revealEls = $$('.reveal');
-if(revealEls.length){
-  const io = new IntersectionObserver((entries, obs) => {
-    entries.forEach(en => {
-      if(en.isIntersecting){
-        en.target.classList.add('in-view');
-        obs.unobserve(en.target);
-      }
+
+// --- 2. DOM Injection Functions ---
+
+function renderPortfolio() {
+    const wrapper = document.getElementById('portfolio-wrapper');
+    if(!wrapper) return;
+    portfolioData.forEach(item => {
+        wrapper.innerHTML += `
+            <div class="swiper-slide">
+                <div class="portfolio-card" onclick="openModal('${item.title}', '${item.img}', '${item.desc}')">
+                    <img src="${item.img}" class="portfolio-img" alt="${item.title}">
+                    <div class="portfolio-overlay">
+                        <span class="highlight">${item.category}</span>
+                        <h3>${item.title}</h3>
+                        <button class="btn-nav">View Stats</button>
+                    </div>
+                </div>
+            </div>
+        `;
     });
-  }, {threshold: 0.12});
-  revealEls.forEach(el => io.observe(el));
 }
 
-/* Portfolio carousel */
-function initCarousel(id){
-  const c = document.getElementById(id);
-  if(!c) return;
-  const wrap = c.querySelector('.slides');
-  const slides = c.querySelectorAll('.slide');
-  let idx = 0;
-  const total = slides.length;
-  const prev = c.querySelector('.carousel-prev');
-  const next = c.querySelector('.carousel-next');
-  function go(i){
-    idx = (i + total) % total;
-    wrap.style.transform = `translateX(-${idx * 100}%)`;
-  }
-  next.addEventListener('click', ()=> go(idx+1));
-  prev.addEventListener('click', ()=> go(idx-1));
-  // autoplay
-  const auto = parseInt(c.dataset.autoplay) || 0;
-  let timer = null;
-  if(auto){
-    timer = setInterval(()=> go(idx+1), auto);
-    c.addEventListener('mouseenter', ()=> clearInterval(timer));
-    c.addEventListener('mouseleave', ()=> timer = setInterval(()=> go(idx+1), auto));
-  }
-}
-initCarousel('portfolio-carousel');
-
-/* Modal popup */
-const modal = $('#modal');
-const modalContent = $('#modal-content');
-const modalCloseBtn = modal && modal.querySelector('.modal-close');
-function openModal(html){
-  modalContent.innerHTML = html;
-  modal.classList.add('show');
-  modal.setAttribute('aria-hidden','false');
-  document.body.style.overflow = 'hidden';
-}
-function closeModal(){
-  modal.classList.remove('show');
-  modal.setAttribute('aria-hidden','true');
-  document.body.style.overflow = '';
-}
-modalCloseBtn && modalCloseBtn.addEventListener('click', closeModal);
-modal && modal.addEventListener('click', (e) => { if(e.target === modal) closeModal(); });
-$$('[data-popup]').forEach(btn => {
-  btn.addEventListener('click', (e) => {
-    const id = btn.dataset.popup;
-    let html = '<h3>Details</h3><p>Information coming soon.</p>';
-
-    // ✅ Pricing Details
-    if (id === 'order-starter') {
-      html = `
-        <h3>Starter Plan</h3>
-        <ul>
-          <li>🎨 1 custom poster design</li>
-          <li>✏️ 2 revisions included</li>
-          <li>⚡ Fast delivery (2–3 days)</li>
-          <li>💼 Perfect for small businesses or single campaigns.</li>
-        </ul>
-      `;
-    }
-
-    if (id === 'order-pro') {
-      html = `
-        <h3>Pro Plan</h3>
-        <ul>
-          <li>🖋️ 3 unique designs + branding polish</li>
-          <li>♾️ Unlimited revisions</li>
-          <li>💬 Dedicated design consultant</li>
-          <li>🚀 Ideal for growing brands and social campaigns.</li>
-        </ul>
-      `;
-    }
-
-    if (id === 'contact-sales') {
-      html = `
-        <h3>Enterprise Plan</h3>
-        <ul>
-          <li>🏢 Custom pricing based on your needs</li>
-          <li>👥 Team onboarding and design training</li>
-          <li>🎯 Full branding package (logo, colors, typography)</li>
-          <li>📞 Contact our sales team for a tailored plan.</li>
-        </ul>
-      `;
-    }
-
-    // 🎨 Portfolio Details (new full info for Portfolio 2.0)
-    if (id === 'proj1') html = `
-      <h3>Festival Poster</h3>
-      <img src="assets/work1.jpg" alt="Festival Poster" style="width:100%;border-radius:8px;margin:8px 0;">
-      <p>Large-format festival poster with layered source files and print-ready PDFs.</p>
-      <p><strong>Tools:</strong> Adobe Photoshop</p>
-      <p><strong>Client:</strong> Cultural Event Agency</p>
-    `;
-
-    if (id === 'proj2') html = `
-      <h3>Restaurant Menu</h3>
-      <img src="assets/work2.jpg" alt="Restaurant Menu" style="width:100%;border-radius:8px;margin:8px 0;">
-      <p>Elegant multi-page menu designed for both print and digital sharing.</p>
-      <p><strong>Tools:</strong> InDesign, Photoshop</p>
-      <p><strong>Client:</strong> Urban Eats Bistro</p>
-    `;
-
-    if (id === 'proj3') html = `
-      <h3>Corporate Banner</h3>
-      <img src="assets/work3.jpg" alt="Corporate Banner" style="width:100%;border-radius:8px;margin:8px 0;">
-      <p>High-impact event banner optimized for large-format printing.</p>
-      <p><strong>Tools:</strong> Illustrator</p>
-      <p><strong>Client:</strong> Tech Expo 2025</p>
-    `;
-
-    if (id === 'proj4') html = `
-      <h3>Brand Identity</h3>
-      <img src="assets/work4.jpg" alt="Brand Identity" style="width:100%;border-radius:8px;margin:8px 0;">
-      <p>Complete brand identity with logo, color palette, and typography system.</p>
-      <p><strong>Tools:</strong> Illustrator, Figma</p>
-      <p><strong>Client:</strong> D'WYNGS Creative Studio</p>
-    `;
-
-    if (id === 'proj5') html = `
-      <h3>Social Campaign</h3>
-      <img src="assets/work5.jpg" alt="Social Campaign" style="width:100%;border-radius:8px;margin:8px 0;">
-      <p>Dynamic social media templates and animations for a new campaign launch.</p>
-      <p><strong>Tools:</strong> Photoshop, After Effects</p>
-      <p><strong>Client:</strong> StartUp Hub</p>
-    `;
-
-    if (id === 'proj6') html = `
-      <h3>Flyer Design</h3>
-      <img src="assets/work6.jpg" alt="Flyer Design" style="width:100%;border-radius:8px;margin:8px 0;">
-      <p>Print-ready flyer design featuring modern layout and quick delivery.</p>
-      <p><strong>Tools:</strong> Illustrator</p>
-      <p><strong>Client:</strong> Local Business Network</p>
-    `;
-
-    // 🖼️ Existing “work” popup
-    if (id === 'work') html = `
-      <h3>Our Portfolio</h3>
-      <p>We don't just design, we make our clients happy. Here’s a quick preview of our recent work.</p>
-      <div class="mini-gallery">
-        <img src="assets/work1.jpg" alt="Poster Design">
-        <img src="assets/work2.jpg" alt="Banner Design">
-        <img src="assets/work3.jpg" alt="Logo Design">
-      </div>
-    `;
-    // Service modal details
-if (id === 'service-flyers') html = `
-  <h3>Flyers</h3>
-  <img src="assets/service1.jpg" alt="Flyer Design" style="width:100%;border-radius:8px;margin:8px 0;">
-  <p>Creative flyer designs that capture attention—print-ready, digital-ready with fast turnaround.</p>
-  <p><strong>Tools:</strong> Illustrator, Photoshop</p>
-`;
-
-if (id === 'service-posters') html = `
-  <h3>Posters</h3>
-  <img src="assets/service2.jpg" alt="Flyer Design" style="width:100%;border-radius:8px;margin:8px 0;">
-  <p>Bold poster layouts for events, campaigns & promotions with print & web variations.</p>
-  <p><strong>Tools:</strong> Illustrator, InDesign</p>
-`;
-
-if (id === 'service-cards') html = `
-  <h3>Visiting Cards</h3>
-  <img src="assets/service3.jpg" alt="Flyer Design" style="width:100%;border-radius:8px;margin:8px 0;">
-  <p>Professional visiting cards with premium print specs and source files included.</p>
-  <p><strong>Tools:</strong> Illustrator</p>
-`;
-
-if (id === 'service-billboards') html = `
-  <h3>Billboards</h3>
-   <img src="assets/service4.jpg" alt="Flyer Design" style="width:100%;border-radius:8px;margin:8px 0;">
-  <p>High-impact billboard visuals optimized for large format production.</p>
-  <p><strong>Tools:</strong> Illustrator</p>
-`;
-
-if (id === 'service-printing') html = `
-  <h3>Printing Visuals</h3>
-   <img src="assets/service5.jpg" alt="Flyer Design" style="width:100%;border-radius:8px;margin:8px 0;">
-  <p>Print-ready visuals with color-corrected files and trim marks—perfect for pro printing.</p>
-  <p><strong>Tools:</strong> Photoshop, InDesign</p>
-`;
-
-if (id === 'service-custom') html = `
-  <h3>Custom Designs</h3>
-   <img src="assets/service6.jpg" alt="Flyer Design" style="width:100%;border-radius:8px;margin:8px 0;">
-  <p>Tailored designs created to match your brand voice—logos, assets and full brand kits.</p>
-  <p><strong>Tools:</strong> Figma, Illustrator</p>
-`;
-
-    // ✅ finally call openModal() AFTER html is defined
-    openModal(html);
-  });
-});
-
-/* Counters */
-(function counters(){
-  const nodes = Array.from(document.querySelectorAll('.stat h3'));
-  if(nodes.length === 0) return;
-  const observer = new IntersectionObserver((entries, obs) => {
-    entries.forEach(entry => {
-      if(entry.isIntersecting){
-        const el = entry.target;
-        if(el.dataset.animated) return;
-        el.dataset.animated = 'true';
-        const raw = el.textContent.trim();
-        const num = parseInt(raw.replace(/\D/g,'')) || 0;
-        let current = 0;
-        const duration = 1400;
-        const stepTime = Math.max(12, Math.floor(duration / Math.max(1, num)));
-        const increment = Math.max(1, Math.floor(num / (duration/stepTime)));
-        const ticker = setInterval(()=>{
-          current += increment;
-          if(current >= num){
-            el.textContent = raw;
-            clearInterval(ticker);
-          } else {
-            el.textContent = current + (raw.endsWith('+') ? '+' : '');
-          }
-        }, stepTime);
-      }
+function renderReviews() {
+    const wrapper = document.getElementById('reviews-wrapper');
+    if(!wrapper) return;
+    reviewsData.forEach(item => {
+        wrapper.innerHTML += `
+            <div class="swiper-slide">
+                <div class="glass-card tilt-card">
+                    <div class="mb-2"><i class="fas fa-quote-left icon-large"></i></div>
+                    <p>"${item.text}"</p>
+                    <div style="margin-top: 20px;">
+                        <h4>${item.name}</h4>
+                        <span class="highlight">${item.role}</span>
+                    </div>
+                </div>
+            </div>
+        `;
     });
-  }, {threshold:0.25});
-  nodes.forEach(n => observer.observe(n));
-})();
+}
 
-/* Contact form placeholder */
-document.getElementById("contact-form").addEventListener("submit", async (e) => {
-  e.preventDefault();
+function renderServices() {
+    const digDiv = document.getElementById('digital-services');
+    const printDiv = document.getElementById('print-services-list');
+    
+    if(digDiv) {
+        servicesDigital.forEach(s => {
+            digDiv.innerHTML += `
+                <div class="service-card tilt-card" data-aos="fade-up">
+                    <div style="margin-bottom:15px; color:#78c5ff;"><i class="fas fa-layer-group fa-2x"></i></div>
+                    <h3>${s.title}</h3>
+                    <p>${s.desc}</p>
+                </div>
+            `;
+        });
+    }
 
-  const name = document.getElementById("name").value.trim();
-  const email = document.getElementById("email").value.trim();
-  const service = document.getElementById("service").value;
-  const message = document.getElementById("message").value.trim();
+    if(printDiv) {
+        servicesPrint.forEach(s => {
+            printDiv.innerHTML += `
+                <div class="service-card tilt-card" data-aos="fade-up">
+                    <div style="margin-bottom:15px; color:#78c5ff;"><i class="fas fa-print fa-2x"></i></div>
+                    <h3>${s.title}</h3>
+                    <p>${s.desc}</p>
+                </div>
+            `;
+        });
+    }
+}
 
-  // Optional: show a “sending” message or spinner
-  const button = e.target.querySelector("button[type='submit']");
-  button.disabled = true;
-  button.textContent = "Sending...";
+function renderTeam() {
+    const wrapper = document.getElementById('team-wrapper');
+    if(!wrapper) return;
+    teamData.forEach(t => {
+        wrapper.innerHTML += `
+            <div class="team-member tilt-card" data-aos="flip-left">
+                <img src="${t.img}" alt="${t.name}">
+                <div class="team-info text-center">
+                    <h4>${t.name}</h4>
+                    <span class="team-role">${t.role}</span>
+                </div>
+            </div>
+        `;
+    });
+}
 
-  try {
-    const response = await fetch("https://dwyngs-website.onrender.com/api/send-mail", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name, email, service, message }),
+// --- 3. Three.js 3D Ad/Media Composition ---
+
+function init3D() {
+    const container = document.getElementById('three-container');
+    if(!container) return;
+
+    // 1. Scene Setup
+    const scene = new THREE.Scene();
+    
+    // 2. Camera
+    const camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 1000);
+    camera.position.z = 5;
+
+    // 3. Renderer
+    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+    renderer.setSize(container.clientWidth, container.clientHeight);
+    container.appendChild(renderer.domElement);
+
+    // 4. Lights
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+    scene.add(ambientLight);
+
+    const pointLight = new THREE.PointLight(0x78c5ff, 1.2);
+    pointLight.position.set(5, 5, 5);
+    scene.add(pointLight);
+
+    // 5. Objects Group
+    const adGroup = new THREE.Group();
+    scene.add(adGroup);
+
+    // A. The "Screen/Banner" (Plane)
+    const geoPlane = new THREE.BoxGeometry(2.8, 1.6, 0.1); 
+    const matPlane = new THREE.MeshStandardMaterial({ 
+        color: 0x020b23, 
+        wireframe: false,
+        roughness: 0.2,
+        emissive: 0x112244 
+    });
+    const edges = new THREE.EdgesGeometry(geoPlane);
+    const line = new THREE.LineSegments(edges, new THREE.LineBasicMaterial( { color: 0x78c5ff } ) );
+    
+    const screenGroup = new THREE.Group();
+    screenGroup.add(new THREE.Mesh(geoPlane, matPlane));
+    screenGroup.add(line);
+    adGroup.add(screenGroup);
+
+    // B. The "Play Button" (Triangle/Cone)
+    const geoPlay = new THREE.ConeGeometry(0.5, 1, 3); 
+    const matPlay = new THREE.MeshStandardMaterial({ color: 0x78c5ff, roughness: 0.1 });
+    const playBtn = new THREE.Mesh(geoPlay, matPlay);
+    playBtn.rotation.x = 1.57; 
+    playBtn.rotation.z = -1.57; 
+    playBtn.position.set(0, 0, 0.5); 
+    adGroup.add(playBtn);
+
+    // C. The "Targeting" (Torus Ring)
+    const geoRing = new THREE.TorusGeometry(1.8, 0.05, 16, 100);
+    const matRing = new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.5 });
+    const ring = new THREE.Mesh(geoRing, matRing);
+    ring.position.z = -0.5;
+    adGroup.add(ring);
+
+    // 6. Animation Loop
+    let time = 0;
+
+    function animate() {
+        requestAnimationFrame(animate);
+        time += 0.015;
+
+        // Gentle floating of whole group
+        adGroup.rotation.y = Math.sin(time * 0.5) * 0.2; 
+        adGroup.rotation.x = Math.cos(time * 0.5) * 0.1; 
+
+        // Play button pulse
+        const scale = 1 + Math.sin(time * 2) * 0.1;
+        playBtn.scale.set(scale, scale, scale);
+
+        // Ring Rotation
+        ring.rotation.z -= 0.01;
+
+        renderer.render(scene, camera);
+    }
+    animate();
+
+    // 7. Handle Window Resize
+    window.addEventListener('resize', () => {
+        camera.aspect = container.clientWidth / container.clientHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(container.clientWidth, container.clientHeight);
+    });
+}
+
+// --- 4. Initialization & Event Listeners ---
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Inject Data
+    renderPortfolio();
+    renderReviews();
+    renderServices();
+    renderTeam();
+
+    // Initialize 3D
+    init3D();
+
+    // Initialize AOS
+    AOS.init({
+        duration: 800,
+        once: true,
+        offset: 100
     });
 
-    const result = await response.json();
-
-    if (result.success) {
-      alert("✅ Your message has been sent successfully!");
-      document.getElementById("contact-form").reset();
-    } else {
-      alert("❌ Message failed to send. Please try again later.");
-    }
-  } catch (error) {
-    console.error("Error:", error);
-    alert("⚠️ Could not connect to the server. Check if backend is running.");
-  }
-
-  // Re-enable button
-  button.disabled = false;
-  button.textContent = "Send Message";
-});
-// Handle contact form submission
-document.getElementById("contact-form").addEventListener("submit", async (e) => {
-  e.preventDefault();
-
-  const name = document.getElementById("name").value.trim();
-  const email = document.getElementById("email").value.trim();
-  const service = document.getElementById("service").value;
-  const message = document.getElementById("message").value.trim();
-
-  const button = e.target.querySelector("button[type='submit']");
-  button.disabled = true;
-  button.textContent = "Sending...";
-
-  try {
-    const response = await fetch("https://dwyngs-website.onrender.com/api/send-mail", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name, email, service, message }),
+    // Initialize Swiper
+    new Swiper('.portfolio-swiper', {
+        slidesPerView: 1, spaceBetween: 30, loop: true, autoplay: { delay: 3000, disableOnInteraction: false },
+        pagination: { el: '.swiper-pagination', clickable: true }, navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+        breakpoints: { 768: { slidesPerView: 2 }, 1024: { slidesPerView: 3 } }
     });
 
-    const result = await response.json();
+    new Swiper('.review-swiper', {
+        slidesPerView: 1, spaceBetween: 30, loop: true, autoplay: { delay: 4500, disableOnInteraction: false },
+        pagination: { el: '.swiper-pagination', clickable: true }, navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+        breakpoints: { 768: { slidesPerView: 2 } }
+    });
 
-    if (result.success) {
-      alert("✅ Your message has been sent successfully!");
-      e.target.reset();
-    } else {
-      alert("❌ Message failed to send. Please try again later.");
+    // 3D Tilt Calculation
+    document.querySelectorAll('.tilt-card').forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            const rotateX = ((y / rect.height) - 0.5) * -10; 
+            const rotateY = ((x / rect.width) - 0.5) * 10; 
+            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+        });
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = `perspective(1000px) rotateX(0) rotateY(0) scale(1)`;
+        });
+    });
+
+    // Nav Toggle
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+    if(hamburger) { hamburger.addEventListener('click', () => { navLinks.classList.toggle('active'); }); }
+
+    // Counters
+    const counters = document.querySelectorAll('.counter');
+    const counterObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const counter = entry.target;
+                const target = +counter.getAttribute('data-target');
+                const increment = target / 50; 
+                const updateCounter = () => {
+                    const c = +counter.innerText;
+                    if (c < target) {
+                        counter.innerText = Math.ceil(c + increment);
+                        setTimeout(updateCounter, 30);
+                    } else {
+                        counter.innerText = target;
+                    }
+                };
+                updateCounter();
+                observer.unobserve(counter);
+            }
+        });
+    }, { threshold: 0.5 });
+    counters.forEach(c => counterObserver.observe(c));
+});
+
+
+// --- 5. Modal & Form Logic (Integrated API) ---
+
+const projectModal = document.getElementById('projectModal');
+const modalTitle = document.getElementById('modalTitle');
+const modalImg = document.getElementById('modalImage');
+const modalDesc = document.getElementById('modalDesc');
+const closeModalProject = document.querySelector('#projectModal .close-modal');
+
+// Legal Modal Elements
+const legalModal = document.getElementById('legalModal');
+const legalModalTitle = document.getElementById('legalModalTitle');
+const legalModalContent = document.getElementById('legalModalContent');
+const closeModalLegal = document.querySelector('#legalModal .close-modal-legal');
+
+
+// --- Project Modal Functions (Portfolio) ---
+window.openModal = (title, img, desc) => {
+    if(projectModal) {
+        modalTitle.innerText = title;
+        modalImg.src = img;
+        modalDesc.innerText = desc;
+        projectModal.classList.add('active');
+        document.body.classList.add('modal-open'); 
     }
-  } catch (error) {
-    console.error("Error:", error);
-    alert("⚠️ Could not connect to the server. Check if backend is running.");
-  }
+};
 
-  button.disabled = false;
-  button.textContent = "Send Message";
-});
+if(closeModalProject) {
+    closeModalProject.addEventListener('click', () => {
+        projectModal.classList.remove('active');
+        document.body.classList.remove('modal-open');
+    });
+}
 
-// Handle Clear button
-document.getElementById("clear-form").addEventListener("click", () => {
-  document.getElementById("contact-form").reset();
-});
+// --- Legal Modal Function ---
+window.openLegalModal = (policyKey) => {
+    const data = legalContent[policyKey];
+    if (legalModal && data) {
+        legalModalTitle.innerText = data.title;
+        legalModalContent.innerHTML = data.text;
+        legalModal.classList.add('active');
+        document.body.classList.add('modal-open');
+    }
+};
 
-/* Footer year */
-const yearEl = document.getElementById('year'); if(yearEl) yearEl.textContent = new Date().getFullYear();
+if(closeModalLegal) {
+    closeModalLegal.addEventListener('click', () => {
+        legalModal.classList.remove('active');
+        document.body.classList.remove('modal-open');
+    });
+}
 
-/* Portfolio 2.0 carousel (3-per-view, center hero) */
-(function initPortfolio2(){
-  const root = document.getElementById('portfolio-2-carousel');
-  if(!root) return;
-  const track = root.querySelector('.p2-track');
-  const cards = Array.from(track.children);
-  const total = cards.length;
-  let idx = 0; // index of centered card (0..total-1)
 
-  // show current: compute translateX so center card is visually centered
-  function render(){
-    // center card should be idx, we want to place it as the 2nd card in view (0-based)
-    // we'll arrange cards in order and translate so the centered card is visually centered
-    const cardWidth = cards[0].getBoundingClientRect().width + 20; // include gap
-    // We want to translate so that the (idx - 1) card appears on left, idx center, idx+1 right
-    // compute offset such that idx card sits in center of container
-    const containerWidth = root.getBoundingClientRect().width;
-    const centerOffset = (containerWidth - cardWidth) / 2;
-    const trackOffset = -((idx) * cardWidth) + centerOffset;
-    track.style.transform = `translateX(${trackOffset}px)`;
+// Close modals on outside click
+window.onclick = (e) => {
+    if (e.target === projectModal) {
+        projectModal.classList.remove('active');
+        document.body.classList.remove('modal-open');
+    }
+    if (e.target === legalModal) {
+        legalModal.classList.remove('active');
+        document.body.classList.remove('modal-open');
+    }
+};
 
-    // clear center class
-    cards.forEach(c => c.classList.remove('center'));
-    // add center to idx
-    if(cards[idx]) cards[idx].classList.add('center');
-  }
 
-  // wrap index
-  function goto(i){
-    idx = ((i % total) + total) % total;
-    render();
-  }
+// --- API Form Submission Logic (Integrated to your Render Endpoint) ---
 
-  // next / prev
-  const nextBtn = document.querySelector('.p2-next');
-  const prevBtn = document.querySelector('.p2-prev');
-  nextBtn && nextBtn.addEventListener('click', ()=> goto(idx+1));
-  prevBtn && prevBtn.addEventListener('click', ()=> goto(idx-1));
+const API_ENDPOINT = "https://dwyngs-website.onrender.com/api/send-mail";
 
-  // autoplay
-  const auto = parseInt(root.dataset.autoplay) || 4000;
-  let timer = null;
-  if(auto){
-    timer = setInterval(()=> goto(idx+1), auto);
-    root.addEventListener('mouseenter', ()=> clearInterval(timer));
-    root.addEventListener('mouseleave', ()=> timer = setInterval(()=> goto(idx+1), auto));
-  }
+/**
+ * Handles submission for both contact and order forms using the Render API endpoint.
+ * @param {Event} e - The submit event.
+ */
+async function handleFormSubmission(e) {
+    e.preventDefault();
 
-  // touch / swipe support (basic)
-  let startX = 0, deltaX = 0;
-  root.addEventListener('touchstart', (e) => { startX = e.touches[0].clientX; if(timer) clearInterval(timer); });
-  root.addEventListener('touchmove', (e) => { deltaX = e.touches[0].clientX - startX; });
-  root.addEventListener('touchend', () => {
-    if(Math.abs(deltaX) > 40){ if(deltaX < 0) goto(idx+1); else goto(idx-1); }
-    deltaX = 0;
-    if(auto) timer = setInterval(()=> goto(idx+1), auto);
-  });
+    const form = e.target;
+    
+    // Extract data
+    const name = form.querySelector('[name="name"]').value.trim();
+    const email = form.querySelector('[name="email"]').value.trim();
+    const service = form.querySelector('[name="service"]').value;
+    const message = form.querySelector('[name="message"]').value.trim();
 
-  // initial
-  window.addEventListener('load', ()=> {
-    // small delay to ensure sizes measured
-    setTimeout(()=> { render(); }, 150);
-    // update on resize
-    window.addEventListener('resize', ()=> { render(); });
-  });
+    const button = form.querySelector("button[type='submit']");
+    const originalText = button.textContent;
+    
+    button.disabled = true;
+    button.textContent = "Sending...";
 
-  // expose goto for debugging
-  window._p2_goto = goto;
-})();
+    try {
+        const response = await fetch(API_ENDPOINT, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ name, email, service, message }),
+        });
 
-/* Close modal with Esc key */
-document.addEventListener('keydown', (e) => {
-  if(e.key === 'Escape') closeModal();
-});
+        const result = await response.json();
+
+        if (response.ok && result.success) { // Check both HTTP status and custom success flag
+            alert(`✅ Success! Your message has been sent. We'll be in touch regarding your ${service} inquiry.`);
+            form.reset();
+        } else {
+            // Include server error message if provided
+            const errorMsg = result.message || "Message failed to send. Please check the network log and try again later.";
+            alert(`❌ Error: ${errorMsg}`);
+        }
+    } catch (error) {
+        console.error("API Error:", error);
+        alert("⚠️ Could not connect to the server or a network error occurred. Check your Render deployment status.");
+    }
+
+    // Re-enable button
+    button.disabled = false;
+    button.textContent = originalText;
+}
+
+// Form Listeners - Attached to the new form IDs
+const contactForm = document.getElementById('contact-form');
+if(contactForm) {
+    contactForm.addEventListener('submit', handleFormSubmission);
+}
+
+const orderForm = document.getElementById('orderForm');
+if(orderForm) {
+    orderForm.addEventListener('submit', handleFormSubmission);
+}

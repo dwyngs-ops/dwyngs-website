@@ -1,493 +1,336 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-90MRQJFQJ9"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D'wyngs | Ad Creative & Performance Design</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-  gtag('config', 'G-90MRQJFQJ9');
-</script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
 
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>D'WYNGS — Creative Ad & Branding Agency</title>
-  <meta name="description" content="D'WYNGS — premium advertisement, posters, banners, flyers, visiting cards & branding. Based in Delhi, India." />
-  <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-  
-  <!-- HEADER / NAV -->
-  <header class="site-header" id="site-header">
-    <div class="container header-row">
-      <a class="brand" href="#home">
-        <img src="assets/logo.png" alt="D'WYNGS logo" class="brand-logo" />
-        <span class="brand-text">D'WYNGS</span>
-      </a>
 
-      <nav class="main-nav" aria-label="Main navigation">
-        <ul class="nav-list">
-          <li><a href="#home">Home</a></li>
-
-          <li class="has-dropdown">
-            <button class="drop-btn" aria-expanded="false">Services ▾</button>
-            <ul class="dropdown">
-              <li><a href="#services">Ads & Posters</a></li>
-              <li><a href="#branding">Branding</a></li>
-              <li><a href="#pricing">Pricing</a></li>
+    <nav id="navbar">
+        <div class="container nav-flex">
+            <div class="logo">D'wyngs<span class="dot">.</span></div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#portfolio">Ad Portfolio</a></li>
+                <li><a href="#services-digital">Creatives</a></li>
+                <li><a href="#order" class="btn-nav">Order Ads</a></li>
             </ul>
-          </li>
+            <div class="hamburger"><i class="fas fa-bars"></i></div>
+        </div>
+    </nav>
 
-          <li class="has-dropdown">
-            <button class="drop-btn" aria-expanded="false">Portfolio ▾</button>
-            <ul class="dropdown">
-              <li><a href="#portfolio">All Projects</a></li>
-              <li><a href="#portfolio">Posters</a></li>
-              <li><a href="#portfolio">Flyers</a></li>
-            </ul>
-          </li>
+    <section id="home" class="hero-section">
+        <div class="container hero-grid">
+            <div class="hero-content">
+                <h4 class="sub-heading">Performance Creative Agency</h4>
+                <h1 data-aos="fade-up" data-aos-duration="1000">Stop Scrolling. <br><span class="highlight">Start Converting.</span></h1>
+                <p data-aos="fade-up" data-aos-delay="200">We specialize exclusively in high-performance advertisement visuals. From scroll-stopping social creatives to billboard-scale campaigns.</p>
+                <div class="hero-btns" data-aos="fade-up" data-aos-delay="400">
+                    <a href="#portfolio" class="btn btn-primary">View Campaigns</a>
+                    <a href="#contact" class="btn btn-outline">Talk Strategy</a>
+                </div>
+            </div>
+            <div class="hero-visual" id="three-container" data-aos="fade-left" data-aos-delay="300"></div>
+        </div>
+        
+        <div class="bg-glow"></div>
+    </section>
 
-          <li><a href="#studio">Our Studio</a></li>
-          <li><a href="#team">Our Team</a></li>
-          <li><a href="#testimonials">Testimonials</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </nav>
+    <section id="about" class="section-padding">
+        <div class="container grid-2">
+            <div class="about-text" data-aos="fade-right">
+                <h4 class="sub-heading">Our Niche</h4>
+                <h2 class="section-title">Visuals That Sell</h2>
+                <p>We don't do generic logos. We don't do fluff. D'wyngs is strictly an **Advertisement Visuals Agency**.</p>
+                <p>We understand the psychology of the click. Every pixel we place is calculated to stop the thumb, engage the user, and drive the click-through rate (CTR) up. We bridge the gap between premium design and aggressive marketing.</p>
+            </div>
+            <div class="about-visual tilt-card" data-aos="fade-left">
+                <div class="glass-card centered-card">
+                    <i class="fas fa-bullseye icon-large"></i>
+                    <h3>High CTR Focus</h3>
+                    <p>Designed for ROAS & Conversion.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-      <button id="mobile-toggle" aria-label="Open menu" class="mobile-toggle">☰</button>
+    <section id="portfolio" class="section-padding bg-darker">
+        <div class="container">
+            <h4 class="sub-heading text-center">Campaign Archive</h4>
+            <h2 class="section-title text-center" data-aos="fade-up">Proven Ad Winners</h2>
+            
+            <div class="swiper portfolio-swiper" data-aos="fade-up" data-aos-delay="200">
+                <div class="swiper-wrapper" id="portfolio-wrapper">
+                    </div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="achievements" class="section-padding">
+        <div class="container flex-around" id="counter-container">
+            <div class="counter-box" data-aos="zoom-in">
+                <h3 class="counter" data-target="350">0</h3>
+                <p>Ad Campaigns</p>
+            </div>
+            <div class="counter-box" data-aos="zoom-in" data-aos-delay="100">
+                <h3 class="counter" data-target="15">0</h3>
+                <p>Million Views</p>
+            </div>
+            <div class="counter-box" data-aos="zoom-in" data-aos-delay="200">
+                <h3 class="counter" data-target="4">0</h3>
+                <p>% Avg CTR</p>
+            </div>
+            <div class="counter-box" data-aos="zoom-in" data-aos-delay="300">
+                <h3 class="counter" data-target="98">0</h3>
+                <p>% Client Retention</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="process" class="section-padding bg-darker">
+        <div class="container">
+            <h4 class="sub-heading text-center">Workflow</h4>
+            <h2 class="section-title text-center" data-aos="fade-up">From Brief to Banner</h2>
+            <div class="process-grid">
+                <div class="process-step tilt-card" data-aos="fade-up">
+                    <div class="step-number">01</div>
+                    <h3>Audience Audit</h3>
+                    <p>We analyze who you are targeting to determine the visual hook.</p>
+                </div>
+                <div class="process-step tilt-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="step-number">02</div>
+                    <h3>Concepting</h3>
+                    <p>Creating raw sketches and hooks focused on AIDA principles.</p>
+                </div>
+                <div class="process-step tilt-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="step-number">03</div>
+                    <h3>Design</h3>
+                    <p>High-fidelity design of static banners, carousels, or motion assets.</p>
+                </div>
+                <div class="process-step tilt-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="step-number">04</div>
+                    <h3>Variation</h3>
+                    <p>Delivering A/B test variations (colors, headlines) to optimize performance.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="reviews" class="section-padding">
+        <div class="container">
+            <h4 class="sub-heading text-center">Results</h4>
+            <h2 class="section-title text-center" data-aos="fade-up">What Marketers Say</h2>
+            <div class="swiper review-swiper" data-aos="fade-up" data-aos-delay="200">
+                <div class="swiper-wrapper" id="reviews-wrapper">
+                    </div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services-digital" class="section-padding bg-accent-glow">
+        <div class="container">
+            <h4 class="sub-heading">Social & Web</h4>
+            <h2 class="section-title" data-aos="fade-right">Digital Ad Creatives</h2>
+            <div class="services-grid" id="digital-services">
+                </div>
+        </div>
+    </section>
+
+    <section id="services-print" class="section-padding">
+        <div class="container">
+            <h4 class="sub-heading text-right">Physical Media</h4>
+            <h2 class="section-title text-right" data-aos="fade-left">OOH & Print Ads</h2>
+            <div class="services-grid" id="print-services-list">
+                </div>
+        </div>
+    </section>
+
+    <section id="studio" class="section-padding bg-darker">
+        <div class="container grid-2-bias">
+            <div class="studio-img tilt-card" data-aos="zoom-in">
+                <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Creative Strategy Room">
+            </div>
+            <div class="studio-content" data-aos="fade-left">
+                <h4 class="sub-heading">The Lab</h4>
+                <h2 class="section-title">Where Hits Are Made</h2>
+                <p>Our studio isn't just a design room; it's a performance lab. We have screens displaying live ad analytics, constantly reminding our designers of the ultimate goal: Conversion.</p>
+                <p>We blend art with data. If it looks good but doesn't sell, it doesn't leave our studio.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="team" class="section-padding">
+        <div class="container">
+            <h4 class="sub-heading text-center">The Creators</h4>
+            <h2 class="section-title text-center" data-aos="fade-up">Your Creative Team</h2>
+            <div class="team-grid" id="team-wrapper">
+                </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section-padding">
+        <div class="container grid-2">
+            <div class="contact-info" data-aos="fade-right">
+                <h4 class="sub-heading">Scale Up</h4>
+                <h2 class="section-title">Ready to Boost ROAS?</h2>
+                <p>Need creatives that actually convert? Let's discuss your next campaign.</p>
+                <ul class="contact-list">
+                    <li><i class="fas fa-envelope"></i> ads@dwyngs.design</li>
+                    <li><i class="fas fa-phone"></i> +1 (555) 091-2233</li>
+                    <li><i class="fas fa-rocket"></i> 101 Creative Blvd, Ad City</li>
+                </ul>
+            </div>
+            <div class="glass-form-wrapper" data-aos="fade-left">
+                <form id="contact-form"> 
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" name="name" id="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" name="email" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Service (Maps to API field 'service')</label>
+                        <select name="service" id="service" required>
+                            <option value="" disabled selected>Select Campaign Goal/Service</option>
+                            <option value="Social Ad Campaign">Social Ad Campaign (FB/IG)</option>
+                            <option value="PPC Display">PPC Display Banners</option>
+                            <option value="Motion Ad">Motion/Video Ad</option>
+                            <option value="OOH Billboard">OOH / Billboard Design</option>
+                            <option value="Other Inquiry">Other Creative Inquiry</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Message</label>
+                        <textarea name="message" id="message" rows="4" placeholder="Briefly describe your project needs." required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section id="order" class="section-padding bg-accent-glow">
+        <div class="container">
+            <div class="order-box glass-card tilt-card" data-aos="zoom-in-up">
+                <h4 class="sub-heading text-center">Book Your Creatives</h4>
+                <h2 class="section-title text-center">Order Ad Package</h2>
+                <p class="text-center mb-2">Secure your delivery timeline.</p>
+                
+                <form id="orderForm">
+                    <div class="grid-2-form">
+                        <div class="form-group">
+                            <label>Contact Name (Maps to API field 'name')</label>
+                            <input type="text" name="name" id="order-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Client Email (Maps to API field 'email')</label>
+                            <input type="email" name="email" id="order-email" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Creative Package (Maps to API field 'service')</label>
+                        <select name="service" id="order-service" required>
+                            <option value="" disabled selected>Select Package</option>
+                            <option value="Meta Ad Bundle Order">Meta (FB/IG) Ad Bundle</option>
+                            <option value="Google Set Order">Google Display Banner Set</option>
+                            <option value="Motion Ad Order">Motion/Video Ad Creative</option>
+                            <option value="Billboard Order">Billboard / OOH Design</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Campaign Details (Maps to API field 'message')</label>
+                        <textarea name="message" id="order-message" rows="3" placeholder="Target audience, offer details, key message..." required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-full">Proceed to Payment / Order</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="section-padding text-center">
+        <div class="container" data-aos="fade-in">
+            <h2>Let's Make You Viral.</h2>
+            <p class="mb-2">Join the brands scaling with D'wyngs Creatives.</p>
+            <a href="#order" class="btn btn-primary">Start Campaign</a>
+            
+            <div class="footer-bottom">
+                
+                <div class="contact-socials-grid">
+                    <div class="footer-contact">
+                        <h3>Get In Touch</h3>
+                        <p><i class="fas fa-phone-alt highlight"></i> +1 (555) 091-2233</p>
+                        <p><i class="fas fa-envelope highlight"></i> ads@dwyngs.design</p>
+                        <p><i class="fas fa-rocket highlight"></i> 101 Creative Blvd, Ad City</p>
+                    </div>
+                    
+                    <div class="footer-socials">
+                        <h3>Connect</h3>
+                        <div class="socials">
+                            <a href="#" aria-label="Behance"><i class="fab fa-behance"></i></a>
+                            <a href="#" aria-label="Dribbble"><i class="fab fa-dribbble"></i></a>
+                            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer-legal-links">
+                    <a href="#" onclick="openLegalModal('privacy')">Privacy Policy</a>
+                    <a href="#" onclick="openLegalModal('return')">Return Policy</a>
+                    <a href="#" onclick="openLegalModal('refund')">Refund Policy</a>
+                    <a href="#" onclick="openLegalModal('disclaimer')">Disclaimer (RazorPay Rules)</a>
+                </div>
+
+                <p>&copy; 2024 D'wyngs Ad Agency. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div id="projectModal" class="modal-overlay">
+        <div class="modal-content glass-card">
+            <span class="close-modal">&times;</span>
+            <h2 id="modalTitle">Project Name</h2>
+            <img id="modalImage" src="" alt="Project Detail">
+            <p id="modalDesc">Project description goes here.</p>
+        </div>
     </div>
-  </header>
 
-  <main>
-    <!-- HERO -->
-    <section id="home" class="section hero">
-      <div class="container hero-grid">
-        <div class="hero-left">
-          <h1 class="headline">We craft <span class="gold">luxury visuals</span> that convert.</h1>
-          <p class="subhead">D'WYNGS — premium advertisement & branding studio based in Delhi, India. Posters, banners, flyers, visiting cards and full brand systems.</p>
-          <div class="cta-group">
-            <a href="#contact" class="btn btn-primary">Get a Quote</a>
-            <button class="btn btn-outline" data-popup="work">See Work</button>
-          </div>
+    <div id="legalModal" class="modal-overlay">
+        <div class="modal-content glass-card">
+            <span class="close-modal-legal">&times;</span>
+            <h2 id="legalModalTitle">Policy Title</h2>
+            <div id="legalModalContent">
+                </div>
         </div>
-
-        <div class="hero-right">
-          <div class="hero-card">
-            <span class="badge">New</span>
-            <h3>Launch Offer — 10% off for first 20 clients</h3>
-            <p>Custom designs, fast turnaround, unlimited revisions on selected packages.</p>
-          </div>
-        </div>
-      </div>
-      <!-- 🖼️ Hero image on right side -->
-  <div class="hero-right">
-    <img src="assets/hero.jpg" alt="Creative workspace" class="hero-img">
-  </div>
-</section>
-    </section>
-
-    <!-- ABOUT -->
-    <section id="about" class="section about reveal">
-      <div class="container">
-        <h2 class="section-title">About D'WYNGS</h2>
-        <p class="lede">We are a creative studio specialized in high-impact advertisement assets — posters, banners, flyers, visiting cards — with plans to scale into full branding services.</p>
-        <div class="about-grid">
-          <div class="about-card">
-            <h4>Creative Excellence</h4>
-            <p>Bold visuals, clear messaging, premium layouts.</p>
-          </div>
-          <div class="about-card">
-            <h4>Fast Delivery</h4>
-            <p>Dedicated timelines & real-time revisions.</p>
-          </div>
-          <div class="about-card">
-            <h4>Brand Focused</h4>
-            <p>Designs aligned to your identity and goals.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SERVICES 2.0 -->
-<section id="services-2" class="section services reveal">
-  <div class="container">
-    <h2 class="section-title">Our Services</h2>
-
-    <div class="services-grid">
-      <!-- Card 1 -->
-      <article class="svc-card">
-        <div class="svc-icon" aria-hidden="true">
-          <!-- simple line SVG icon -->
-          <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M3 6h18M3 12h18M3 18h18"></path>
-          </svg>
-        </div>
-        <h3>Flyers</h3>
-        <p class="muted">Creative designs that grab attention.</p>
-        <button class="btn btn-outline svc-btn" data-popup="service-flyers">View More</button>
-      </article>
-
-      <!-- Card 2 -->
-      <article class="svc-card">
-        <div class="svc-icon" aria-hidden="true">
-          <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="3" y="3" width="18" height="14" rx="2" ry="2"></rect>
-            <path d="M7 21h10"></path>
-          </svg>
-        </div>
-        <h3>Posters</h3>
-        <p class="muted">Bold visuals for events & brands.</p>
-        <button class="btn btn-outline svc-btn" data-popup="service-posters">View More</button>
-      </article>
-
-      <!-- Card 3 -->
-      <article class="svc-card">
-        <div class="svc-icon" aria-hidden="true">
-          <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M21 7v10a2 2 0 0 1-2 2H7l-4 0V7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-            <path d="M7 11h10"></path>
-          </svg>
-        </div>
-        <h3>Visiting Cards</h3>
-        <p class="muted">Professional identity in print.</p>
-        <button class="btn btn-outline svc-btn" data-popup="service-cards">View More</button>
-      </article>
-
-      <!-- Card 4 -->
-      <article class="svc-card">
-        <div class="svc-icon" aria-hidden="true">
-          <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M2 12h20"></path>
-            <path d="M12 2v20"></path>
-            <path d="M3 3l18 18"></path>
-          </svg>
-        </div>
-        <h3>Billboards</h3>
-        <p class="muted">Big ideas, bigger impact.</p>
-        <button class="btn btn-outline svc-btn" data-popup="service-billboards">View More</button>
-      </article>
-
-      <!-- Card 5 -->
-      <article class="svc-card">
-        <div class="svc-icon" aria-hidden="true">
-          <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M6 2h12v6H6z"></path>
-            <path d="M3 10h18v10H3z"></path>
-          </svg>
-        </div>
-        <h3>Printing Visuals</h3>
-        <p class="muted">Premium prints, vivid detail.</p>
-        <button class="btn btn-outline svc-btn" data-popup="service-printing">View More</button>
-      </article>
-
-      <!-- Card 6 -->
-      <article class="svc-card">
-        <div class="svc-icon" aria-hidden="true">
-          <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 2l3 6 6 3-6 3-3 6-3-6-6-3 6-3z"></path>
-          </svg>
-        </div>
-        <h3>Custom Designs</h3>
-        <p class="muted">Tailored visuals, your style.</p>
-        <button class="btn btn-outline svc-btn" data-popup="service-custom">View More</button>
-      </article>
     </div>
-  </div>
-</section>
 
-    <!-- PROCESS -->
-    <section class="section process reveal">
-      <div class="container">
-        <h2 class="section-title">How We Work</h2>
-        <div class="process-steps">
-          <div class="step"><span>1</span><p>Discovery</p></div>
-          <div class="step"><span>2</span><p>Concept</p></div>
-          <div class="step"><span>3</span><p>Design</p></div>
-          <div class="step"><span>4</span><p>Delivery</p></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- PORTFOLIO 2.0 -->
-<section id="portfolio-2" class="section portfolio reveal">
-  <div class="container">
-    <h2 class="section-title">Portfolio — Featured Works</h2>
-
-    <div class="portfolio-2-wrapper">
-      <button class="carousel-btn prev p2-prev" aria-label="Previous">‹</button>
-
-      <div id="portfolio-2-carousel" class="portfolio-2-carousel" data-autoplay="4000">
-        <div class="p2-track">
-          <!-- Card 1 -->
-          <div class="p2-card">
-            <div class="p2-thumb"><img src="assets/work1.jpg" alt="Work 1"></div>
-            <div class="p2-meta">
-              <h3>Festival Poster</h3>
-              <p>Vibrant poster for seasonal events.</p>
-              <button class="btn btn-outline" data-popup="proj1">View Details</button>
-            </div>
-          </div>
-
-          <!-- Card 2 -->
-          <div class="p2-card">
-            <div class="p2-thumb"><img src="assets/work2.jpg" alt="Work 2"></div>
-            <div class="p2-meta">
-              <h3>Restaurant Menu</h3>
-              <p>Elegant menu design with print + social-ready versions.</p>
-              <button class="btn btn-outline" data-popup="proj2">View Details</button>
-            </div>
-          </div>
-
-          <!-- Card 3 -->
-          <div class="p2-card">
-            <div class="p2-thumb"><img src="assets/work3.jpg" alt="Work 3"></div>
-            <div class="p2-meta">
-              <h3>Corporate Banner</h3>
-              <p>High-impact banner designs for events.</p>
-              <button class="btn btn-outline" data-popup="proj3">View Details</button>
-            </div>
-          </div>
-
-          <!-- Card 4 -->
-          <div class="p2-card">
-            <div class="p2-thumb"><img src="assets/work4.jpg" alt="Work 4"></div>
-            <div class="p2-meta">
-              <h3>Brand Identity</h3>
-              <p>Logo & brand kit for a creative studio.</p>
-              <button class="btn btn-outline" data-popup="proj4">View Details</button>
-            </div>
-          </div>
-
-          <!-- Card 5 -->
-          <div class="p2-card">
-            <div class="p2-thumb"><img src="assets/work5.jpg" alt="Work 5"></div>
-            <div class="p2-meta">
-              <h3>Social Campaign</h3>
-              <p>Set of social assets and stories.</p>
-              <button class="btn btn-outline" data-popup="proj5">View Details</button>
-            </div>
-          </div>
-
-          <!-- Card 6 -->
-          <div class="p2-card">
-            <div class="p2-thumb"><img src="assets/work6.jpg" alt="Work 6"></div>
-            <div class="p2-meta">
-              <h3>Flyer Design</h3>
-              <p>Print-ready flyer with layered source files.</p>
-              <button class="btn btn-outline" data-popup="proj6">View Details</button>
-            </div>
-          </div>
-        </div> <!-- .p2-track -->
-      </div> <!-- #portfolio-2-carousel -->
-
-      <button class="carousel-btn next p2-next" aria-label="Next">›</button>
-    </div> <!-- .portfolio-2-wrapper -->
-  </div>
-</section>
-
-    <!-- OUR STUDIO -->
-    <section id="studio" class="section studio reveal">
-      <div class="container">
-        <h2 class="section-title">Our Studio — Delhi, India</h2>
-        <p class="section-desc">The heart of D'WYNGS. Open workspace, creative zones, production-ready stations and meeting rooms to align with clients.</p>
-        <div class="studio-grid">
-          <div class="studio-img"><img src="assets/studio.jpg" alt="D'WYNGS studio"></div>
-          <div class="studio-text">
-            <h3>Designed for Creativity</h3>
-            <p>Our studio supports collaborative work between designers, brand strategists, and production specialists. Visit us by appointment.</p>
-            <iframe class="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d224345.87145242644!2d77.06889714999999!3d28.527582!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cfd6f58f01d35%3A0x4cb1f98b0100f!2sNew%20Delhi!5e0!3m2!1sen!2sin!4v1692356000000!5m2!1sen!2sin" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- PRICING -->
-    <section id="pricing" class="section pricing reveal">
-      <div class="container">
-        <h2 class="section-title">Pricing</h2>
-        <div class="pricing-grid">
-          <div class="price-card">
-            <h3>Starter</h3>
-            <p class="price">₹1,999</p>
-            <ul>
-              <li>1 poster design</li>
-              <li>2 revisions</li>
-            </ul>
-            <button class="btn btn-primary" data-popup="order-starter">Order</button>
-          </div>
-
-          <div class="price-card recommended">
-            <h3>Pro</h3>
-            <p class="price">₹2,499</p>
-            <ul>
-              <li>3 designs + branding touch</li>
-              <li>Unlimited revisions</li>
-            </ul>
-            <button class="btn btn-primary" data-popup="order-pro">Order</button>
-          </div>
-
-          <div class="price-card">
-            <h3>Enterprise</h3>
-            <p class="price">Custom</p>
-            <ul>
-              <li>Team onboarding</li>
-              <li>Full branding</li>
-            </ul>
-            <button class="btn btn-primary" data-popup="contact-sales">Contact Sales</button>
-          </div>
-        </div>
-      </div>
-    </section>
-
-
-    <!-- TESTIMONIALS -->
-    <section id="testimonials" class="section testimonials reveal">
-      <div class="container">
-        <h2 class="section-title">Testimonials</h2>
-        <div class="testimonials-slider" id="testimonials-slider">
-          <div class="testimony active"><p>"D'WYNGS transformed our campaign — sold out two shows."</p><strong>— Priya, Event Manager</strong></div>
-          <div class="testimony"><p>"Premium quality and quick turnarounds."</p><strong>— Rohit, Café Owner</strong></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- WHY US -->
-    <section id="whyus" class="section whyus reveal">
-      <div class="container">
-        <h2 class="section-title">Why Choose Us</h2>
-        <ul class="why-list">
-          <li><strong>Luxury visuals</strong> – brand-first thinking.</li>
-          <li><strong>Transparent pricing</strong> – no surprise fees.</li>
-          <li><strong>Secure delivery</strong> – files & rights transferred.</li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- TEAM -->
-    <section id="team" class="section team reveal">
-      <div class="container">
-        <h2 class="section-title">Our Team</h2>
-        <div class="team-grid">
-          <div class="member">
-            <img src="assets/aaryan.jpg" alt="Aaryan" />
-            <h4>Mr. Aaryan</h4>
-            <p>Founder &</p>
-            <p>Designer</p>
-          </div>
-          <div class="member">
-            <img src="assets/nainshi.jpg" alt="Nainshi" />
-            <h4>Miss Nainshi</h4>
-            <p>Co-Founder &</p>
-            <p>Creative Lead</p>
-          </div>
-          <div class="member">
-            <img src="assets/pawan.jpg" alt="pawan" />
-            <h4>Mr. Pawan</h4>
-            <p>Designing Leader &</p>
-            <p>Projects Management</p>
-          </div>
-          <div class="member">
-            <img src="assets/rahul.jpg" alt="rahul" />
-            <h4>Mr. Rahul</h4>
-            <p>Designer &</p>
-            <p>Projects Management</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ACHIEVEMENTS & STATS -->
-    <section class="section stats reveal">
-      <div class="container">
-        <h2 class="section-title">Achievements & Stats</h2>
-        <div class="stats-grid">
-          <div class="stat"><h3 data-count="120">100+</h3><p>Projects Completed</p></div>
-          <div class="stat"><h3 data-count="50">50+</h3><p>Happy Clients</p></div>
-          <div class="stat"><h3 data-count="5">1+</h3><p>Years of Experience</p></div>
-          <div class="stat"><h3 data-count="10">5+</h3><p>Creative Minds</p></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section id="contact" class="section contact reveal">
-      <div class="container">
-        <h2 class="section-title">Contact</h2>
-        <div class="contact-grid">
-        <form id="contact-form" class="contact-form" action="#" method="POST" novalidate>
-            <label><span>Name</span><input id="name" name="name" required /></label>
-            <label><span>Email</span><input id="email" name="email" type="email" required /></label>
-            <label><span>Service</span>
-                <select id="service" name="service">
-                     <option>Poster</option><option>Flyer</option><option>Branding</option>
-                </select>
-             </label>
-            <label><span>Message</span><textarea id="message" name="message" rows="5"></textarea></label>
-            <div class="form-actions">
-                <button type="submit" class="btn btn-primary">Send Message</button>
-                <button type="button" class="btn btn-outline" id="clear-form">Clear</button>
-            </div>
-        </form>
-          <div class="contact-info">
-            <h4>Reach us</h4>
-            <p>Email: <a href="mailto:d.wyngs@gmail.com">d.wyngs@gmail.com</a></p>
-            <p>Whatsapp: <a href="tel:+919999999999">+91 8595315515</a></p>
-            <p>Call Us: <a href="tel:+919999999999">+91 7303229620</a></p>
-            <div class="socials">
-              <a href="#" aria-label="Instagram">Instagram</a>
-              <a href="#" aria-label="Facebook">Facebook</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CTA -->
-    <section class="section cta reveal">
-      <div class="container cta-inner">
-        <h2>Ready to elevate your brand?</h2>
-        <a class="btn btn-cta" href="#contact">Talk to Us</a>
-      </div>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="container footer-inner">
-      <div class="footer-left">
-        <div class="brand-foot">
-          <img src="assets/logo.png" alt="D'WYNGS logo" class="brand-logo-small" />
-          <div>
-            <div class="brand-text">D'WYNGS</div>
-            <div class="muted">Delhi, India</div>
-          </div>
-        </div>
-        <div class="reach">
-          <div>Email: <a href="mailto:hello@dwyngs.example">d.wyngs@gmail.com</a></div>
-          <div>Whatsapp: <a href="tel:+919999999999">+91 8595315515</a></div>
-          <div>Call Us: <a href="tel:+919999999999">+91 7303229620</a></div>
-        </div>
-      </div>
-
-      <div class="footer-right">
-        <div class="socials-inline">
-          <a href="#" aria-label="Instagram">Instagram</a>
-          <a href="#" aria-label="Facebook">Facebook</a>
-        </div>
-        <div class="copyright">© <span id="year"></span> D'WYNGS — All rights reserved.</div>
-      </div>
-    </div>
-  </footer>
-
-  <!-- Modal -->
-  <div id="modal" class="modal" aria-hidden="true">
-    <div class="modal-panel" role="dialog" aria-modal="true">
-      <button class="modal-close" aria-label="Close">✕</button>
-      <div id="modal-content"></div>
-    </div>
-  </div>
-
-  <script src="js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    
+    <script src="js/main.js"></script>
 </body>
 </html>
