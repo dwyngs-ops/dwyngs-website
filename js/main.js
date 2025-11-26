@@ -5,14 +5,44 @@
  * IMPORTANT: Form submission logic targets the existing Render API endpoint.
  */
 
-// --- 1. Ad-Specific Dummy Data & Legal Content ---
+// --- 1. Ad-Specific Data & Legal Content ---
 
 const portfolioData = [
-    { title: "Nike Air Max Launch", category: "Social Ads", img: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=600&q=80", desc: "High-energy Instagram Stories designed to drive sneaker drops. Achieved 4.5% CTR." },
-    { title: "CryptoApp Install", category: "PPC Banners", img: "https://images.unsplash.com/photo-1518546305927-5a555bb7020d?auto=format&fit=crop&w=600&q=80", desc: "Google Display Network set. Focused on 'Trust' and 'Speed' hooks. +20% conversion lift." },
-    { title: "Glow Skin Black Friday", category: "Motion Ads", img: "https://images.unsplash.com/photo-1596462502278-27bfdd403348?auto=format&fit=crop&w=600&q=80", desc: "Stop-motion product showcase for TikTok ads. Viral engagement with 2M+ views." },
-    { title: "TechConf 2024", category: "OOH Billboard", img: "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=600&q=80", desc: "City-center digital billboard visuals. High contrast for maximum street visibility." },
-    { title: "SaaS Lead Gen", category: "LinkedIn Carousel", img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80", desc: "Educational carousel ads for B2B targeting. Positioned client as industry thought leader." }
+    { title: "Events Branding", category: "Service Flyer Design", img: "assets/work1.jpg", 
+        tool: "Photoshop", // <--- NEW FIELD
+        purpose: "Create an elegant and premium promotional flyer for a wedding & event planning business to highlight all services clearly for clients.a                                                       ", // <--- NEW FIELD
+        about: "Used a soft floral theme and pastel luxury palette with classic typography to reflect sophistication, celebration, and trust. Structure focuses on presenting services in two categories for easier understanding and professional branding.", // <--- NEW FIELD (This replaces the old 'desc' content)
+        desc: "Deprecated Description" // ADDED: Keep old 'desc' field for compatibility with renderPortfolio fix below
+    },
+    { title: "Events Branding", category: "Service Flyer Design", img: "assets/work2.jpg", 
+        desc: "Google Display Network set. Focused on 'Trust' and 'Speed' hooks. +20% conversion lift.", 
+        tool: "Photoshop", 
+        purpose: "Create an elegant and premium promotional flyer for a wedding & event planning business to highlight all services clearly for clients.", 
+        about: "Used a soft floral theme and pastel luxury palette with classic typography to reflect sophistication, celebration, and trust. Structure focuses on presenting services in two categories for easier understanding and professional branding." },
+
+    { title: "Retail & Grocery Smart Digital Support", category: "Business Marketing", img: "assets/work3.jpg", 
+        desc: "Stop-motion product showcase for TikTok ads. Viral engagement with 2M+ views.", 
+        tool: "Illustrator, Photoshop", 
+        purpose: "Design a modern marketing flyer for a digital support company offering smart retail solutions to grocery and retail stores.", 
+        about: "Used a bold tech-inspired layout with clear segmentation of “Challenges” and “Solutions” for impactful communication. Bright blue palette and icons enhance readability, conveying innovation, growth, and digital efficiency." },
+
+    { title: "CCTV Surveillance & Remote Monitoring", category: "Corporate Advertising Poster", img: "assets/work4.jpg", 
+        desc: "City-center digital billboard visuals. High contrast for maximum street visibility.", 
+        tool: "Photoshop", 
+        purpose: "Promote 24/7 CCTV surveillance and monitoring services for residential, industrial, and commercial clients.", 
+        about: "Designed a high-contrast layout combining real surveillance visuals with professional dark tones to build trust and seriousness. Highlighted industries, services, and contact information with clear hierarchy for strong corporate appeal." },
+
+    { title: "Events Branding", category: "Service Flyer Design", img: "assets/work2.jpg", 
+        desc: "Google Display Network set. Focused on 'Trust' and 'Speed' hooks. +20% conversion lift.", 
+        tool: "Photoshop", 
+        purpose: "Create an elegant and premium promotional flyer for a wedding & event planning business to highlight all services clearly for clients.", 
+        about: "Used a soft floral theme and pastel luxury palette with classic typography to reflect sophistication, celebration, and trust. Structure focuses on presenting services in two categories for easier understanding and professional branding." },
+        
+    { title: "Go90 Events Branding", category: "Business Card Design", img: "assets/work6.jpg", 
+        desc: "Educational carousel ads for B2B targeting. Positioned client as industry thought leader.", 
+        tool: "Illustrator, Photoshop", 
+        purpose: "Create a premium, modern identity for a wedding & event planning brand.", 
+        about: "Focused on a soft luxury palette and elegant typography to reflect professionalism" }
 ];
 
 const reviewsData = [
@@ -23,47 +53,47 @@ const reviewsData = [
 
 const servicesDigital = [
     { title: "Social Media Creatives", desc: "Scroll-stopping static & carousel ads for FB, IG, and LinkedIn." },
-    { title: "Motion & Video Ads", desc: "Short-form video editing and animation for TikTok & Reels." },
-    { title: "PPC Display Banners", desc: "Google & Programmatic banners optimized for clicks." }
+    { title: "Display Advertising", desc: "Ads that appear on other websites, including banner ads and retargeting ads." },
+    { title: "Branding And Visual Identity", desc: "Graphic design that creates a cohesive visual identity for a brand across all its digital platforms." }
 ];
 
 const servicesPrint = [
-    { title: "Billboards & OOH", desc: "Large format digital and static outdoor advertising." },
-    { title: "Event Signage", desc: "Booths, roll-ups, and banners for conferences." },
-    { title: "Direct Mail Ads", desc: "Physical flyers and postcards designed for direct response." }
+    { title: "Brochures And Flyers", desc: "Foldable or single-sheet documents designed to provide information about a product, service, or event." },
+    { title: "Posters And Banners", desc: "Large-scale visuals used for public display, such as on walls, street corners, or at events." },
+    { title: "Business cards And Identity", desc: "The primary visual mark of a brand and a small, printed card with contact information for an individual or company." }
 ];
 
 const teamData = [
-    { name: "Alex D.", role: "Creative Strategist", img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80" },
-    { name: "Jessica L.", role: "Motion Designer", img: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=400&q=80" },
-    { name: "David K.", role: "Conversion Specialist", img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80" }
+    { name: "MR. AARYAN", role: "Designer", img: "assets/aaryan.jpg" },
+    { name: "MISS NAINSHI", role: "Digital Services", img: "assets/nainshi.jpg" },
+    { name: "MR. PAWAN", role: "Print Services", img: "assets/pawan.jpg" }
 ];
 
 const legalContent = {
     privacy: {
         title: "Privacy Policy",
         text: `<h3>Introduction</h3><p>We take your privacy seriously. This policy explains how we collect, use, and protect your personal data when you use our services or website.</p>
-               <h3>Data Collection</h3><p>We collect information you provide directly to us (e.g., name, email) when you submit a contact form or place an order. We also automatically collect non-personal data like IP addresses and browsing behavior using cookies and analytics for site optimization and ad performance tracking.</p>
-               <h3>Data Use</h3><p>Your data is used solely to fulfill your requests, manage your campaign, process payments, and improve our services. We do not sell your personal data to third parties.</p>`
+                <h3>Data Collection</h3><p>We collect information you provide directly to us (e.g., name, email) when you submit a contact form or place an order. We also automatically collect non-personal data like IP addresses and browsing behavior using cookies and analytics for site optimization and ad performance tracking.</p>
+                <h3>Data Use</h3><p>Your data is used solely to fulfill your requests, manage your campaign, process payments, and improve our services. We do not sell your personal data to third parties.</p>`
     },
     return: {
         title: "Creative Return Policy",
         text: `<h3>Scope of Return</h3><p>Due to the bespoke nature of advertisement visual design, our services are non-refundable once the final, approved assets have been delivered ("Final Delivery").</p>
-               <h3>Revision Process</h3><p>We offer a standard revision period (typically 3 rounds) outlined in your service agreement. Assets are only deemed 'returned' for revision during this phase.</p>
-               <h3>Rejection Before Final Delivery</h3><p>If the project is terminated by the client before Final Delivery, a prorated amount based on the work completed and costs incurred will be retained, and any remaining balance refunded. Contact us immediately to discuss project cancellation.</p>`
+                <h3>Revision Process</h3><p>We offer a standard revision period (typically 3 rounds) outlined in your service agreement. Assets are only deemed 'returned' for revision during this phase.</p>
+                <h3>Rejection Before Final Delivery</h3><p>If the project is terminated by the client before Final Delivery, a prorated amount based on the work completed and costs incurred will be retained, and any remaining balance refunded. Contact us immediately to discuss project cancellation.</p>`
     },
     refund: {
         title: "Refund Policy",
         text: `<h3>General Refund Eligibility</h3><p>Refunds are only issued if D'wyngs fails to initiate work within 15 business days of receiving the initial deposit and project brief, or if explicitly outlined in a written service contract addendum.</p>
-               <h3>Non-Refundable Circumstances</h3><p>No refunds will be granted after the client approves the final design files or after the project moves beyond the agreed-upon revision rounds and reaches Final Delivery.</p>
-               <h3>Payment Gateway (RazorPay) Disclaimer</h3><p>All refunds processed will follow the standard operational timelines and terms of service provided by our payment gateway, RazorPay. We are not responsible for delays caused by the payment processor or the client's bank. Any charges incurred by us (e.g., transaction fees) may be deducted from the refund amount.</p>`
+                <h3>Non-Refundable Circumstances</h3><p>No refunds will be granted after the client approves the final design files or after the project moves beyond the agreed-upon revision rounds and reaches Final Delivery.</p>
+                <h3>Payment Gateway (RazorPay) Disclaimer</h3><p>All refunds processed will follow the standard operational timelines and terms of service provided by our payment gateway, RazorPay. We are not responsible for delays caused by the payment processor or the client's bank. Any charges incurred by us (e.g., transaction fees) may be deducted from the refund amount.</p>`
     },
     disclaimer: {
-        title: "Disclaimer (RazorPay Compliance)",
+        title: "Disclaimer",
         text: `<h3>Payment Gateway</h3><p>Our payment processing is powered by RazorPay. By submitting a payment, you agree to RazorPay's terms and conditions, which govern the transaction process.</p>
-               <h3>Transaction Security</h3><p>All sensitive information is handled by RazorPay's secure gateway. We do not store your credit card or sensitive payment details on our servers.</p>
-               <h3>RazorPay Rule Compliance</h3><p>As per RazorPay guidelines, this disclaimer confirms that D'wyngs operates legally, offers defined services (Ad Visuals Graphic Design), and adheres to all laws regarding the sale of digital creative services.</p>
-               <h3>Service Scope</h3><p>D'wyngs is only responsible for the creative design services described in your package. We do not guarantee ad performance, click rates, or sales success, as those factors are dependent on the client's marketing strategy and budget.</p>`
+                <h3>Transaction Security</h3><p>All sensitive information is handled by RazorPay's secure gateway. We do not store your credit card or sensitive payment details on our servers.</p>
+                <h3>RazorPay Rule Compliance</h3><p>As per RazorPay guidelines, this disclaimer confirms that D'wyngs operates legally, offers defined services (Ad Visuals Graphic Design), and adheres to all laws regarding the sale of digital creative services.</p>
+                <h3>Service Scope</h3><p>D'wyngs is only responsible for the creative design services described in your package. We do not guarantee ad performance, click rates, or sales success, as those factors are dependent on the client's marketing strategy and budget.</p>`
     }
 };
 
@@ -76,8 +106,7 @@ function renderPortfolio() {
     portfolioData.forEach(item => {
         wrapper.innerHTML += `
             <div class="swiper-slide">
-                <div class="portfolio-card" onclick="openModal('${item.title}', '${item.img}', '${item.desc}')">
-                    <img src="${item.img}" class="portfolio-img" alt="${item.title}">
+                <div class="portfolio-card" onclick="openModal('${item.title}')"> <img src="${item.img}" class="portfolio-img" alt="${item.title}">
                     <div class="portfolio-overlay">
                         <span class="highlight">${item.category}</span>
                         <h3>${item.title}</h3>
@@ -322,14 +351,28 @@ document.addEventListener('DOMContentLoaded', () => {
     counters.forEach(c => counterObserver.observe(c));
 });
 
+// FIX 1: Add getProjectData helper function
+// --- Helper function to find data by Title ---
+function getProjectData(title) {
+    return portfolioData.find(project => project.title === title);
+}
+
 
 // --- 5. Modal & Form Logic (Integrated API) ---
 
-const projectModal = document.getElementById('projectModal');
+const projectModal = document.getElementById('projectModal'); // ADDED: Required for logic below
 const modalTitle = document.getElementById('modalTitle');
 const modalImg = document.getElementById('modalImage');
-const modalDesc = document.getElementById('modalDesc');
-const closeModalProject = document.querySelector('#projectModal .close-modal');
+
+// FIX 2a: Updated list of variables for new modal structure
+const modalCategory = document.getElementById('modalCategory'); 
+const modalTool = document.getElementById('modalTool');
+const modalPurpose = document.getElementById('modalPurpose');
+const modalAboutText = document.getElementById('modalAboutText');
+const modalDesc = document.getElementById('modalDesc'); // KEPT: If used elsewhere, but not used in new modal logic
+
+// FIX 2b: Use the explicit ID for the close button
+const closeModalProject = document.getElementById('closeProjectBtn'); 
 
 // Legal Modal Elements
 const legalModal = document.getElementById('legalModal');
@@ -339,22 +382,34 @@ const closeModalLegal = document.querySelector('#legalModal .close-modal-legal')
 
 
 // --- Project Modal Functions (Portfolio) ---
-window.openModal = (title, img, desc) => {
-    if(projectModal) {
-        modalTitle.innerText = title;
-        modalImg.src = img;
-        modalDesc.innerText = desc;
+window.openModal = (title) => {
+    // FIX 3: Get all project data based on the title passed from the card
+    const project = getProjectData(title); 
+
+    if (project && projectModal) {
+        // Populate all new fields
+        modalTitle.innerText = project.title;
+        modalCategory.innerText = project.category; 
+        modalImg.src = project.img;
+        
+        modalTool.innerText = project.tool;
+        modalPurpose.innerText = project.purpose;
+        modalAboutText.innerText = project.about; 
+
         projectModal.classList.add('active');
         document.body.classList.add('modal-open'); 
     }
 };
 
+// FIX 5: Use the correct variable name and only include this block once.
 if(closeModalProject) {
     closeModalProject.addEventListener('click', () => {
         projectModal.classList.remove('active');
         document.body.classList.remove('modal-open');
     });
 }
+// REMOVED: Redundant duplicate close listener block that was here.
+
 
 // --- Legal Modal Function ---
 window.openLegalModal = (policyKey) => {
@@ -407,9 +462,13 @@ async function handleFormSubmission(e) {
     const service = form.querySelector('[name="service"]').value;
     const message = form.querySelector('[name="message"]').value.trim();
 
+    const formStatus = form.querySelector('#form-status'); // NEW: Select status element
     const button = form.querySelector("button[type='submit']");
     const originalText = button.textContent;
     
+    // Reset status if it was previously set
+    if(formStatus) formStatus.innerHTML = ''; 
+
     button.disabled = true;
     button.textContent = "Sending...";
 
@@ -423,21 +482,39 @@ async function handleFormSubmission(e) {
         const result = await response.json();
 
         if (response.ok && result.success) { // Check both HTTP status and custom success flag
-            alert(`✅ Success! Your message has been sent. We'll be in touch regarding your ${service} inquiry.`);
+            // SUCCESS Feedback
+            if(formStatus) {
+                formStatus.innerHTML = '<span style="color: #4CAF50;">✅ Success! Message sent.</span>';
+            } else {
+                 // Fallback to alert if #form-status is missing
+                alert(`✅ Success! Your message has been sent. We'll be in touch regarding your ${service} inquiry.`);
+            }
             form.reset();
         } else {
-            // Include server error message if provided
+            // ERROR Feedback
             const errorMsg = result.message || "Message failed to send. Please check the network log and try again later.";
-            alert(`❌ Error: ${errorMsg}`);
+            if(formStatus) {
+                 formStatus.innerHTML = `<span style="color: #FF6347;">❌ Error: ${errorMsg}</span>`;
+            } else {
+                alert(`❌ Error: ${errorMsg}`);
+            }
+           
         }
     } catch (error) {
         console.error("API Error:", error);
-        alert("⚠️ Could not connect to the server or a network error occurred. Check your Render deployment status.");
+        // NETWORK ERROR Feedback
+         if(formStatus) {
+            formStatus.innerHTML = '<span style="color: #FFA500;">⚠️ Network error. Server may be starting up. Please wait and try again.</span>';
+        } else {
+            alert("⚠️ Could not connect to the server or a network error occurred. Check your Render deployment status.");
+        }
     }
 
-    // Re-enable button
-    button.disabled = false;
-    button.textContent = originalText;
+    // Re-enable button after 2 seconds for better flow
+    setTimeout(() => {
+        button.disabled = false;
+        button.textContent = originalText;
+    }, 2000); 
 }
 
 // Form Listeners - Attached to the new form IDs

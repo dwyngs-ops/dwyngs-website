@@ -456,14 +456,18 @@ footer {
 .modal-content {
     max-width: 600px;
     width: 100%;
-    /* FIX: Enable internal scroll and set maximum height for content */
     max-height: 90vh; 
-    overflow-y: auto;
+    overflow-y: hidden; /* IMPORTANT: Ensures the content *inside* scrolls, not the container */
     
     background: #020b23;
     position: relative;
     border: 1px solid var(--accent-color);
     box-shadow: 0 0 30px rgba(120, 197, 255, 0.2);
+    
+    display: flex; 
+    flex-direction: column; /* Key to making the image static and content scrollable */
+    padding: 0; 
+    border-radius: 8px; 
 }
 
 .close-modal {
@@ -489,8 +493,8 @@ footer {
 
 .close-modal-legal:hover { color: var(--accent-color); }
 
-
-.modal-content img { width: 100%; max-height: 300px; object-fit: cover; border-radius: 8px; margin: 10px 0; }
+/* DEPRECATED: This rule interfered with the new structure. Keeping new classes below. */
+/* .modal-content img { width: 100%; max-height: 300px; object-fit: cover; border-radius: 8px; margin: 10px 0; } */
 
 #legalModal h2 {
     color: var(--accent-color);
@@ -585,4 +589,47 @@ footer {
     .brand-logo {
         height: 30px; /* Slightly smaller logo for mobile */
     }
+}
+/* --- NEW PORTFOLIO MODAL SCROLLING STYLES (REQUIRED FOR FIX) --- */
+
+/* FIX 2: Image area styling - this will be static */
+.modal-image-area {
+    width: 100%;
+    max-height: 250px;
+    overflow: hidden;
+    border-radius: 8px 8px 0 0; /* Match container radius */
+}
+
+.modal-image-area img { 
+    width: 100%; 
+    height: 100%;
+    object-fit: cover; 
+    margin: 0;
+    border-radius: 0;
+}
+
+/* FIX 3: Scrollable content area - this scrolls when needed */
+#projectModalContent {
+    flex-grow: 1; 
+    overflow-y: auto; /* This section scrolls */
+    padding: var(--space-lg);
+}
+
+/* Add a style to make sure the body doesn't scroll when the modal is open */
+body.modal-open {
+    overflow: hidden;
+}
+/* In css/styles.css */
+#legalModal .modal-content {
+    max-height: 90vh; /* Limits the modal height to 90% of the viewport */
+    overflow-y: auto; /* IMPORTANT: Enables vertical scrolling when content exceeds max-height */
+    padding: 30px; 
+    box-sizing: border-box; 
+}
+
+/* Target the inner content area as a secondary scrolling zone */
+#legalModalContent {
+    max-height: calc(100vh - 200px); /* Adjust max height for inner content if necessary */
+    overflow-y: auto; /* Ensures the policy text itself can scroll */
+    padding-right: 15px; /* Adds space for the scrollbar */
 }

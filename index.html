@@ -21,7 +21,7 @@
     <nav id="navbar">
         <div class="container nav-flex">
             <div class="logo logo-combined">
-              <img src="assets/logo.png" alt="D'wyngs Logo" class="brand-logo"> D'wyngs<span class="dot">.</span>
+              <img src="assets/logo.png" alt="D'wyngs Logo" class="brand-logo"> D'wyngs
             </div>
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
@@ -53,8 +53,8 @@
     <section id="about" class="section-padding">
         <div class="container grid-2">
             <div class="about-text" data-aos="fade-right">
-                <h4 class="sub-heading">Our Niche</h4>
-                <h2 class="section-title">Visuals That Sell</h2>
+                <h4 class="sub-heading">About Us</h4>
+                <h2 class="section-title">Visuals That Speak <br><span class="highlight">Loudly.</span></h2>
                 <p>We don't do generic logos. We don't do fluff. D'wyngs is strictly an **Advertisement Visuals Agency**.</p>
                 <p>We understand the psychology of the click. Every pixel we place is calculated to stop the thumb, engage the user, and drive the click-through rate (CTR) up. We bridge the gap between premium design and aggressive marketing.</p>
             </div>
@@ -86,12 +86,12 @@
     <section id="achievements" class="section-padding">
         <div class="container flex-around" id="counter-container">
             <div class="counter-box" data-aos="zoom-in">
-                <h3 class="counter" data-target="350">0</h3>
-                <p>Ad Campaigns</p>
+                <h3 class="counter" data-target="80">0</h3>
+                <p>Happy Clients</p>
             </div>
             <div class="counter-box" data-aos="zoom-in" data-aos-delay="100">
-                <h3 class="counter" data-target="15">0</h3>
-                <p>Million Views</p>
+                <h3 class="counter" data-target="110">0</h3>
+                <p>Projects</p>
             </div>
             <div class="counter-box" data-aos="zoom-in" data-aos-delay="200">
                 <h3 class="counter" data-target="4">0</h3>
@@ -150,7 +150,7 @@
     <section id="services-digital" class="section-padding bg-accent-glow">
         <div class="container">
             <h4 class="sub-heading">Social & Web</h4>
-            <h2 class="section-title" data-aos="fade-right">Digital Ad Creatives</h2>
+            <h2 class="section-title" data-aos="fade-right">Digital Ad Creatives Services</h2>
             <div class="services-grid" id="digital-services">
                 </div>
         </div>
@@ -159,7 +159,7 @@
     <section id="services-print" class="section-padding">
         <div class="container">
             <h4 class="sub-heading text-right">Physical Media</h4>
-            <h2 class="section-title text-right" data-aos="fade-left">OOH & Print Ads</h2>
+            <h2 class="section-title text-right" data-aos="fade-left">Graphic + Print Services</h2>
             <div class="services-grid" id="print-services-list">
                 </div>
         </div>
@@ -171,9 +171,9 @@
                 <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Creative Strategy Room">
             </div>
             <div class="studio-content" data-aos="fade-left">
-                <h4 class="sub-heading">The Lab</h4>
+                <h4 class="sub-heading">The studio</h4>
                 <h2 class="section-title">Where Hits Are Made</h2>
-                <p>Our studio isn't just a design room; it's a performance lab. We have screens displaying live ad analytics, constantly reminding our designers of the ultimate goal: Conversion.</p>
+                <p>Our studio isn't just a design room; it's a performance studio. We have screens displaying live ad analytics, constantly reminding our designers of the ultimate goal: Conversion.</p>
                 <p>We blend art with data. If it looks good but doesn't sell, it doesn't leave our studio.</p>
             </div>
         </div>
@@ -195,9 +195,10 @@
                 <h2 class="section-title">Ready to Boost ROAS?</h2>
                 <p>Need creatives that actually convert? Let's discuss your next campaign.</p>
                 <ul class="contact-list">
-                    <li><i class="fas fa-envelope"></i> ads@dwyngs.design</li>
-                    <li><i class="fas fa-phone"></i> +1 (555) 091-2233</li>
-                    <li><i class="fas fa-rocket"></i> 101 Creative Blvd, Ad City</li>
+                    <li><i class="fas fa-envelope"></i> d.wyngs@gmail.com</li>
+                    <li><i class="fas fa-phone"></i> +91 8595315515</li>
+                    <li><i class="fas fa-phone"></i> +91 7303229620</li>
+                    <li><i class="fas fa-rocket"></i> Delhi, India</li>
                 </ul>
             </div>
             <div class="glass-form-wrapper" data-aos="fade-left">
@@ -214,10 +215,11 @@
                         <label>Service (Maps to API field 'service')</label>
                         <select name="service" id="service" required>
                             <option value="" disabled selected>Select Campaign Goal/Service</option>
-                            <option value="Social Ad Campaign">Social Ad Campaign (FB/IG)</option>
-                            <option value="PPC Display">PPC Display Banners</option>
-                            <option value="Motion Ad">Motion/Video Ad</option>
-                            <option value="OOH Billboard">OOH / Billboard Design</option>
+                            <option value="Flyers">Flyers</option>
+                            <option value="Posters">Posters</option>
+                            <option value="Visiting Cards">Visiting Card</option>
+                            <option value="Social Media Advertisement">Social Media Advertisement</option>
+                            <option value="Graphic + Print">Graphic + Print</option>
                             <option value="Other Inquiry">Other Creative Inquiry</option>
                         </select>
                     </div>
@@ -225,6 +227,9 @@
                         <label>Message</label>
                         <textarea name="message" id="message" rows="4" placeholder="Briefly describe your project needs." required></textarea>
                     </div>
+
+                    <div id="form-status" style="margin-bottom: 15px; min-height: 20px;"></div>
+
                     <button type="submit" class="btn btn-primary btn-full">Send Message</button>
                 </form>
             </div>
@@ -254,10 +259,12 @@
                         <label>Creative Package (Maps to API field 'service')</label>
                         <select name="service" id="order-service" required>
                             <option value="" disabled selected>Select Package</option>
-                            <option value="Meta Ad Bundle Order">Meta (FB/IG) Ad Bundle</option>
-                            <option value="Google Set Order">Google Display Banner Set</option>
-                            <option value="Motion Ad Order">Motion/Video Ad Creative</option>
-                            <option value="Billboard Order">Billboard / OOH Design</option>
+                            <option value="Meta Ad Bundle Order">Social Media Creatives</option>
+                            <option value="Google Set Order">Display Advertising</option>
+                            <option value="Motion Ad Order">Branding And Visual Identity</option>
+                            <option value="Billboard Order">Brochures And Flyers (Print)</option>
+                            <option value="Billboard Order">Posters And Banners (Print)</option>
+                            <option value="Billboard Order">Business cards And Identity (Print)</option>
                         </select>
                     </div>
 
@@ -265,6 +272,8 @@
                         <label>Campaign Details (Maps to API field 'message')</label>
                         <textarea name="message" id="order-message" rows="3" placeholder="Target audience, offer details, key message..." required></textarea>
                     </div>
+
+                    <div id="form-status" style="margin-bottom: 15px; min-height: 20px;"></div>
 
                     <button type="submit" class="btn btn-primary btn-full">Proceed to Payment / Order</button>
                 </form>
@@ -283,9 +292,10 @@
                 <div class="contact-socials-grid">
                     <div class="footer-contact">
                         <h3>Get In Touch</h3>
-                        <p><i class="fas fa-phone-alt highlight"></i> +1 (555) 091-2233</p>
-                        <p><i class="fas fa-envelope highlight"></i> ads@dwyngs.design</p>
-                        <p><i class="fas fa-rocket highlight"></i> 101 Creative Blvd, Ad City</p>
+                        <p><i class="fas fa-phone-alt highlight"></i> +91 8595315515</p>
+                        <p><i class="fas fa-phone-alt highlight"></i> +91 7303229620</p>
+                        <p><i class="fas fa-envelope highlight"></i> d.wyngs@gmail.com</p>
+                        <p><i class="fas fa-rocket highlight"></i> Delhi, India</p>
                     </div>
                     
                     <div class="footer-socials">
@@ -300,10 +310,10 @@
                 </div>
 
                 <div class="footer-legal-links">
-                    <a href="#" onclick="openLegalModal('privacy')">Privacy Policy</a>
-                    <a href="#" onclick="openLegalModal('return')">Return Policy</a>
-                    <a href="#" onclick="openLegalModal('refund')">Refund Policy</a>
-                    <a href="#" onclick="openLegalModal('disclaimer')">Disclaimer (RazorPay Rules)</a>
+                    <a href="javascript:void(0)" onclick="openLegalModal('privacy')">Privacy Policy</a>
+                    <a href="javascript:void(0)" onclick="openLegalModal('return')">Return Policy</a>
+                    <a href="javascript:void(0)" onclick="openLegalModal('refund')">Refund Policy</a>
+                    <a href="javascript:void(0)" onclick="openLegalModal('disclaimer')">Disclaimer</a>
                 </div>
 
                 <p>&copy; 2024 D'wyngs Ad Agency. All rights reserved.</p>
@@ -312,11 +322,33 @@
     </footer>
 
     <div id="projectModal" class="modal-overlay">
-        <div class="modal-content glass-card">
-            <span class="close-modal">&times;</span>
-            <h2 id="modalTitle">Project Name</h2>
-            <img id="modalImage" src="" alt="Project Detail">
-            <p id="modalDesc">Project description goes here.</p>
+        <div class="modal-content">
+            <span class="close-modal" id="closeProjectBtn">&times;</span> 
+            
+            <div class="modal-image-area">
+                <img id="modalImage" src="" alt="Project Image">
+            </div>
+
+            <div id="projectModalContent">
+                <h2 id="modalTitle">Project Title</h2>
+                <span class="modal-category-tag" id="modalCategory">Category</span>
+                
+                <div class="modal-details-grid">
+                    <div class="detail-box">
+                        <h4>Tools Used</h4>
+                        <p id="modalTool">Photoshop, After Effects</p>
+                    </div>
+                    <div class="detail-box">
+                        <h4>Campaign Goal</h4>
+                        <p id="modalPurpose">Increase new product purchase conversions</p>
+                    </div>
+                </div>
+
+                <div id="modalAbout">
+                    <h4>The Strategy</h4>
+                    <p id="modalAboutText">Detailed description of the campaign and results...</p>
+                </div>
+            </div>
         </div>
     </div>
 
