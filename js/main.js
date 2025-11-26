@@ -14,7 +14,7 @@ const portfolioData = [
         about: "Used a soft floral theme and pastel luxury palette with classic typography to reflect sophistication, celebration, and trust. Structure focuses on presenting services in two categories for easier understanding and professional branding.", // <--- NEW FIELD (This replaces the old 'desc' content)
         desc: "Deprecated Description" // ADDED: Keep old 'desc' field for compatibility with renderPortfolio fix below
     },
-    { title: "Wedding Branding", category: "Service Flyer Design", img: "assets/work2.jpg", 
+    { title: "Wedding Branding", category: "Service Flyer Design", img: "assets/work11.jpg", 
         desc: "Google Display Network set. Focused on 'Trust' and 'Speed' hooks. +20% conversion lift.", 
         tool: "Photoshop", 
         purpose: "Create an elegant and premium promotional flyer for a wedding & event planning business to highlight all services clearly for clients.", 
