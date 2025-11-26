@@ -14,7 +14,7 @@ const portfolioData = [
         about: "Used a soft floral theme and pastel luxury palette with classic typography to reflect sophistication, celebration, and trust. Structure focuses on presenting services in two categories for easier understanding and professional branding.", // <--- NEW FIELD (This replaces the old 'desc' content)
         desc: "Deprecated Description" // ADDED: Keep old 'desc' field for compatibility with renderPortfolio fix below
     },
-    { title: "Events Branding", category: "Service Flyer Design", img: "assets/work2.jpg", 
+    { title: "Wedding Branding", category: "Service Flyer Design", img: "assets/work2.jpg", 
         desc: "Google Display Network set. Focused on 'Trust' and 'Speed' hooks. +20% conversion lift.", 
         tool: "Photoshop", 
         purpose: "Create an elegant and premium promotional flyer for a wedding & event planning business to highlight all services clearly for clients.", 
@@ -32,7 +32,7 @@ const portfolioData = [
         purpose: "Promote 24/7 CCTV surveillance and monitoring services for residential, industrial, and commercial clients.", 
         about: "Designed a high-contrast layout combining real surveillance visuals with professional dark tones to build trust and seriousness. Highlighted industries, services, and contact information with clear hierarchy for strong corporate appeal." },
 
-    { title: "Events Branding", category: "Service Flyer Design", img: "assets/work2.jpg", 
+    { title: "Wedding Planner", category: "Service Flyer Design", img: "assets/work2.jpg", 
         desc: "Google Display Network set. Focused on 'Trust' and 'Speed' hooks. +20% conversion lift.", 
         tool: "Photoshop", 
         purpose: "Create an elegant and premium promotional flyer for a wedding & event planning business to highlight all services clearly for clients.", 
